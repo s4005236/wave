@@ -14,6 +14,7 @@ The following table describes the data that a gesture holds. `Optional` specifie
 | name       | string         | Yes      | A human-readable name of the gesture                |
 | type       | string         | Yes      | Whether it is a `STILL` or `TRACK` gesture          |
 | events     | list[string]   | Yes      | A list of event ids that the gesture should trigger |
+| power      | integer        | Yes      | The required power level |
 
 
 ### Description
@@ -48,3 +49,10 @@ Default: `STILL`
 A list of event ids that the gesture should trigger when it's detected.  
 Example: `[light_on, door_open]`  
 Default: `None`
+
+#### power
+The required power level.  
+There will probably be an authentication system later. This will need some kind of "access levels", represented in "power". A higher power value is more powerful.  
+If left unspecified everyone can use the gesture.  
+Example: 30  
+Default: 0
