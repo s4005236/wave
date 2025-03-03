@@ -14,7 +14,7 @@ The following table describes the data that a gesture holds. `Optional` specifie
 | name       | string         | Yes      | A human-readable name of the gesture                |
 | type       | string         | Yes      | Whether it is a `STILL` or `TRACK` gesture          |
 | events     | list[string]   | Yes      | A list of event ids that the gesture should trigger |
-| power      | integer        | Yes      | The required power level |
+| power      | integer        | Yes      | The required power level                            |
 
 
 ### Description
@@ -56,3 +56,11 @@ There will probably be an authentication system later. This will need some kind 
 If left unspecified everyone can use the gesture.  
 Example: 30  
 Default: 0
+
+### Tranfer to IP
+The transfer to the IP will happen trough a REST-like API. The core will provide an API for connecting the both, sending the gestures while doing so. It will send the following fields:  
+- uuid
+- components
+- type
+
+A documentation for the API will follow when it's built.
