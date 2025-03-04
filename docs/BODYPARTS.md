@@ -15,4 +15,4 @@ Below is a list of all defined bodyparts which can be detected by the image proc
 | RINDEX  | Right index finger  |
 | RMIDDLE | Right middle finger |
 | RRING   | Right ring finger   |
-| RLITTle | Right little finger |
+| RLITTLE | Right little finger |
