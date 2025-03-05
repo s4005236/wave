@@ -1,0 +1,29 @@
+[project]
+name = "open-gangster"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Raziel Kretschmer",email = "s4005251@ba-sachsen.de"},
+    {name = "Alexander Jahn",email = "s4005236@ba-sachsen.de"},
+    {name = "Maximilian Unger",email = "s4005395@ba-sachsen.de"},
+    {name = "Dustin Kowarsch",email = "s4005362@ba-sachsen.de"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dependencies]
+core = { path = "./src/core" }
+device = { path = "./src/device" }
+image = { path = "./src/image" }
+ui = { path = "./src/ui" }
+
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+black = "^25.1.0"
+pre-commit = "^4.1.0"
