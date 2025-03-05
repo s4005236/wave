@@ -1,6 +1,6 @@
 [project]
 name = "open-gangster"
-version = "0.1.0"
+version = "0.0.1"
 description = ""
 authors = [
     {name = "Raziel Kretschmer",email = "s4005251@ba-sachsen.de"},
@@ -10,6 +10,13 @@ authors = [
 ]
 readme = "README.md"
 requires-python = ">=3.10"
+
+packages = [
+    {include = "core"},
+    {include = "device"},
+    {include = "image"},
+    {include = "ui"}
+]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
@@ -21,9 +28,6 @@ device = { path = "./src/device" }
 image = { path = "./src/image" }
 ui = { path = "./src/ui" }
 
-
-
 [tool.poetry.group.dev.dependencies]
-pytest = "^8.3.5"
 black = "^25.1.0"
 pre-commit = "^4.1.0"
