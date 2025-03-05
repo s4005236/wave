@@ -23,11 +23,13 @@ requires = ["poetry-core>=2.0.0,<3.0.0", "setuptools", "wheel"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.dependencies]
-core = { path = "./src/core" }
-device = { path = "./src/device" }
-image = { path = "./src/image" }
-ui = { path = "./src/ui" }
+#core = { path = "./src/core" }
+#device = { path = "./src/device" }
+#image = { path = "./src/image" }
+#ui = { path = "./src/ui" }
+pylint = "^3.3.4"
 
 [tool.poetry.group.dev.dependencies]
 black = "^25.1.0"
 pre-commit = "^4.1.0"
+pylint = "^3.3.4"
