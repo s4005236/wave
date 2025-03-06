@@ -30,7 +30,7 @@ pylint = "^3.3.4"
 [tool.poetry.dependencies]
 pylint = "^3.3.4"
 
-core = { path = "./src/core" }
-device = { path = "./src/device" }
-image = { path = "./src/image" }
-ui = { path = "./src/ui" }
+#core = { path = "./src/core" }
+#device = { path = "./src/device" }
+#image = { path = "./src/image" }
+#ui = { path = "./src/ui" }
