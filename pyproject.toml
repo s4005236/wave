@@ -2,24 +2,26 @@
 name = "open-gangster"
 version = "0.0.1"
 description = ""
+license = "GPLv3"
 authors = [
     {name = "Raziel Kretschmer",email = "s4005251@ba-sachsen.de"},
     {name = "Alexander Jahn",email = "s4005236@ba-sachsen.de"},
     {name = "Maximilian Unger",email = "s4005395@ba-sachsen.de"},
     {name = "Dustin Kowarsch",email = "s4005362@ba-sachsen.de"}
 ]
-readme = "README.md"
-requires-python = ">=3.10"
 
 packages = [
-    {include = "core"},
-    {include = "device"},
-    {include = "image"},
-    {include = "ui"}
+    { path = "core"},
+    { path = "device"},
+    { path = "image"},
+    { path = "ui"}
 ]
 
+readme = "README.md"
+requires-python = ">=3.12"
+
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0", "setuptools", "wheel"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.group.dev.dependencies]
@@ -28,9 +30,10 @@ pre-commit = "^4.1.0"
 pylint = "^3.3.4"
 
 [tool.poetry.dependencies]
+python = "^3.12"
 pylint = "^3.3.4"
 
-#core = { path = "./src/core" }
-#device = { path = "./src/device" }
-#image = { path = "./src/image" }
-#ui = { path = "./src/ui" }
+core = { path = "./src/core" }
+device = { path = "./src/device" }
+image = { path = "./src/image" }
+ui = { path = "./src/ui" }
