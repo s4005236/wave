@@ -4,4 +4,4 @@
 ## Graph
 The following graph shows the steps of the code deployment pipeline:
 
-...pipeline graph diagram...
+![Deployment Diagram](../media/deployment.svg "Deployment")
