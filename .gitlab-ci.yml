@@ -3,6 +3,7 @@ stages:
   - test
 
 build_core:
+  tags: python
   stage: build
   rules:
   script:
