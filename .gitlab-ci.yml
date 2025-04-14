@@ -4,9 +4,6 @@ stages:
 
 build_core:
   image: python:3.12
-  # tags: 
-  #   - saas-linux-small-amd64
   stage: build
-  rules:
   script:
   - echo "building core"
