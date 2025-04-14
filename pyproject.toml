@@ -18,20 +18,20 @@ packages = [
 ]
 
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = "3.12"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.group.dev.dependencies]
-pre-commit = "^4.1.0"
-pylint = "^3.3.4"
-black = "^25.1.0"
-flake8 = "^7.1.2"
+pre-commit = "4.1.0"
+pylint = "3.3.4"
+black = "25.1.0"
+flake8 = "7.1.2"
 
 [tool.poetry.dependencies]
-python = ">=3.12"
+python = "3.12"
 
 core = { path = "./src/core" }
 device = { path = "./src/device" }
