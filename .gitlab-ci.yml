@@ -1,0 +1,10 @@
+stages:
+  - test
+
+run_tests:
+  stage: test
+  image: python:3.12 -V
+  before_script:
+    - 
+  script:
+    - 
