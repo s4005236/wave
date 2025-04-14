@@ -1,10 +1,10 @@
 stages:
+  - build
   - test
 
-run_tests:
-  stage: test
-  image: python:3.12 -V
-  before_script:
-    - 
+build_core:
+  stage: build
+  rules:
   script:
-    - 
+  - echo "building core"
+
