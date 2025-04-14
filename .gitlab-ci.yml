@@ -3,8 +3,9 @@ stages:
   - test
 
 build_core:
-  tags: 
-    - saas-linux-small-amd64
+  image: python:3.12
+  # tags: 
+  #   - saas-linux-small-amd64
   stage: build
   rules:
   script:
