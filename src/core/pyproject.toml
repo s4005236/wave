@@ -4,3 +4,6 @@ version = "0.0.1"
 description = ""
 # authors = []
 requires-python = ">=3.12"
+
+[tool.poetry.dependencies]
+pyyaml = "^6.0.2"
