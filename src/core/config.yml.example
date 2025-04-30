@@ -1,0 +1,25 @@
+# This is an example of a config for the core. Copy and rename it to "config.yml" and customize it to your liking.
+
+##########################
+# Gestures               #
+##########################
+gestures:
+  - id: "gangster:lpeace"
+    name: "Left Peace"
+    type: "STILL"
+    power: 0
+    events:
+      - light_on
+      - door_open
+    components:
+      - LMIDDLE
+      - LINDEX
+  - id: "gangster:rthumb_up"
+    name: "Right thumb up"
+    type: "STILL"
+    power: 10
+    events:
+      - music_off
+      - close_windows
+    components:
+      - RTHUMB
