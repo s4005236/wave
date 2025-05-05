@@ -11,10 +11,10 @@ authors = [
 ]
 
 packages = [
-    { path = "core"},
-    { path = "device"},
-    { path = "image"},
-    { path = "ui"}
+    { path = "core", from = "src"},
+    { path = "device", from = "src"},
+    { path = "image", from = "src"},
+    { path = "ui", from = "src"}
 ]
 
 readme = "README.md"
