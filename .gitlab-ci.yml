@@ -1,9 +1,0 @@
-stages:
-  - build
-  - test
-
-build_core:
-  image: python:3.12
-  stage: build
-  script:
-  - echo "building core"
