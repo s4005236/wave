@@ -39,7 +39,8 @@ ui = { path = "./src/ui" }
 
 [tool.black]
 line-length = 79
-include = '\.pyi?$'
+target-version = ['py312']          # targets Python Version 3.12
+include = '\.pyi?$'                 #includes .py- and .pyi- files
 exclude = '''
 /(
     \.git
@@ -52,7 +53,7 @@ exclude = '''
   | build
   | dist
 )/
-'''
+'''                                 # standard excludes
 
 [tool.flake8]
 ignore = ["E203", "E266", "E501", "W503", "F403", "F401"]
