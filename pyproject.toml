@@ -19,6 +19,7 @@ build-backend = "poetry.core.masonry.api"
 pre-commit = "4.1.0"
 black = "25.1.0"
 flake8 = "7.1.2"
+pylint = "^3.3.7"
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
@@ -28,7 +29,6 @@ device = { path = "./src/device" }
 image = { path = "./src/image" }
 ui = { path = "./src/ui" }
 
-pylint = "^3.3.7"
 
 [tool.black]
 line-length = 79
