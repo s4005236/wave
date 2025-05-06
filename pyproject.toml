@@ -3,6 +3,7 @@ name = "open-gangster"
 version = "0.0.1"
 description = ""
 license = "GPLv3"
+readme = "README.md"
 authors = [
     {name = "Raziel Kretschmer",email = "s4005251@ba-sachsen.de"},
     {name = "Alexander Jahn",email = "s4005236@ba-sachsen.de"},
@@ -10,17 +11,8 @@ authors = [
     {name = "Dustin Kowarsch",email = "s4005362@ba-sachsen.de"}
 ]
 
-packages = [
-    { include = "core", from = "src"},
-    { include = "device", from = "src"},
-    { include = "image", from = "src"},
-    { include = "ui", from = "src"}
-]
-
-readme = "README.md"
-
 [build-system]
-requires = ["poetry-core", "setup-tools"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.group.dev.dependencies]
