@@ -8,7 +8,7 @@ name: Pylint
 on: [push] # ONLY TESTING
 
 jobs:
-  build:
+  pylint:
     runs-on: ubuntu-latest
     strategy:
       matrix:
