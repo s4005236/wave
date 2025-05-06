@@ -5,10 +5,10 @@ description = ""
 license = "GPLv3"
 readme = "README.md"
 authors = [
-    {name = "Raziel Kretschmer",email = "s4005251@ba-sachsen.de"},
-    {name = "Alexander Jahn",email = "s4005236@ba-sachsen.de"},
-    {name = "Maximilian Unger",email = "s4005395@ba-sachsen.de"},
-    {name = "Dustin Kowarsch",email = "s4005362@ba-sachsen.de"}
+    "Raziel Kretschmer <s4005251@ba-sachsen.de>",
+    Alexander Jahn <s4005236@ba-sachsen.de>",
+    "Maximilian Unger <s4005395@ba-sachsen.de>",
+    "Dustin Kowarsch <s4005362@ba-sachsen.de>"
 ]
 
 [tool.poetry.group.dev.dependencies]
