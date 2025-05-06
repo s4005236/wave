@@ -1,7 +1,7 @@
 import yaml
-from .gesture import Gesture
-from ..enums.gesture_types import GestureTypes
-from ..enums.bodyparts import Fingers
+from src.core.src.gesture import Gesture
+from src.enums.gesture_types import GestureTypes
+from src.enums.bodyparts import Fingers
 import logging
 
 log = logging.getLogger(__name__)
