@@ -6,7 +6,7 @@ license = "GPLv3"
 readme = "README.md"
 authors = [
     "Raziel Kretschmer <s4005251@ba-sachsen.de>",
-    Alexander Jahn <s4005236@ba-sachsen.de>",
+    "Alexander Jahn <s4005236@ba-sachsen.de>",
     "Maximilian Unger <s4005395@ba-sachsen.de>",
     "Dustin Kowarsch <s4005362@ba-sachsen.de>"
 ]
