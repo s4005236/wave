@@ -1,4 +1,4 @@
-[project]
+[tool.poetry]
 name = "wave"
 version = "0.0.1"
 description = ""
@@ -10,10 +10,6 @@ authors = [
     {name = "Maximilian Unger",email = "s4005395@ba-sachsen.de"},
     {name = "Dustin Kowarsch",email = "s4005362@ba-sachsen.de"}
 ]
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "4.1.0"
@@ -29,6 +25,9 @@ device = { path = "./src/device" }
 image = { path = "./src/image" }
 ui = { path = "./src/ui" }
 
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 line-length = 79
