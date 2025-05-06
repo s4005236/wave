@@ -1,11 +1,9 @@
 name: Pylint
 
-# on:
-#   pull_request:
-#     branches:
-#       - main
-
-on: [push] # ONLY TESTING
+on:
+  pull_request:
+    branches:
+      - main
 
 jobs:
   pylint:
@@ -27,3 +25,4 @@ jobs:
     - name: Run pylint
       run: |
         poetry run pylint --rcfile=.pylintrc $(git ls-files '*.py')
+#       continue-on-error: true
