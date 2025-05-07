@@ -7,7 +7,7 @@ from src.enums.bodyparts import Fingers
 log = logging.getLogger(__name__)
 
 
-class Core():
+class Core:
     """
     The core module of this project.
     Handles the config and communication between the other modules.
