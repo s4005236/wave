@@ -31,14 +31,18 @@ class Core:
                 continue
             else:
                 self._gesture_ids.append(gesture_id)
-                self.gestures.append(Gesture(
-                    gesture_id, gesture["name"],
-                    type=GestureTypes(gesture["type"].lower()),
-                    power=int(gesture["power"]),
-                    events=gesture["events"],
-                    components=[Fingers(finger.lower())
-                                for finger in gesture["components"]]
-                )
+                self.gestures.append(
+                    Gesture(
+                        gesture_id,
+                        gesture["name"],
+                        type=GestureTypes(gesture["type"].lower()),
+                        power=int(gesture["power"]),
+                        events=gesture["events"],
+                        components=[
+                            Fingers(finger.lower())
+                            for finger in gesture["components"]
+                        ],
+                    )
                 )
 
     def start(self) -> None:
