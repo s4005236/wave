@@ -5,8 +5,9 @@ from src.enums.bodyparts import Fingers
 
 
 @dataclass
-class Gesture():
+class Gesture:
     """A base class representing a gesture."""
+
     id: str
     name: str
     type: GestureTypes

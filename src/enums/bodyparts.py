@@ -1,5 +1,6 @@
 from enum import StrEnum, auto
 
+
 class Fingers(StrEnum):
     LTHUMB = auto()
     LINDEX = auto()
