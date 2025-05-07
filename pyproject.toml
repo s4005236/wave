@@ -12,10 +12,10 @@ authors = [
 ]
 
 [tool.poetry.group.dev.dependencies]
-pre-commit = "4.1.0"
-black = "25.1.0"
 flake8 = "7.1.2"
 pylint = "^3.3.7"
+autohooks = "^25.4.1"
+autohooks-plugin-black = "^23.10.0"
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
@@ -24,6 +24,10 @@ core = { path = "./src/core" }
 device = { path = "./src/device" }
 image = { path = "./src/image" }
 ui = { path = "./src/ui" }
+
+[tool.autohooks]
+mode = "poetry_multiline"
+pre-commit = ["autohooks.plugins.black"]
 
 [build-system]
 requires = ["poetry-core"]
