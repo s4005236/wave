@@ -14,10 +14,7 @@ authors = [
 [tool.poetry.group.dev.dependencies]
 pylint = "^3.3.7"
 pre-commit = "^4.2.0"
-<<<<<<< HEAD
 black = "^25.1.0"
-=======
->>>>>>> a5e9435 (rev: add pre-commit configuration and remove autohooks dependencies)
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
