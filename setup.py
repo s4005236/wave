@@ -5,6 +5,7 @@ installing dependencies and setting up pre-commit hooks.
 
 import subprocess
 import sys
+import os
 
 
 def run(cmd: str):
@@ -30,7 +31,12 @@ def main():
         - Install dependencies using poetry
         - Install pre-commit hooks
     """
-    print("Setting up the project...")
+    if not os.path.exists(".venv"):
+        print("WARNING: No virtual environment found. Consider creating one.")
+        return
+    else:
+        print("Virtual environment found. Proceeding with setup.")
+
     run("pip install --upgrade pip")
     run("pip install poetry")
     run("poetry update")
