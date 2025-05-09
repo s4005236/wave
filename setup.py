@@ -31,16 +31,15 @@ def main():
         - Install dependencies using poetry
         - Install pre-commit hooks
     """
-    if not os.path.exists(".venv"):
-        print("WARNING: No virtual environment found. Consider creating one.")
-        return
-    else:
-        print("Virtual environment found. Proceeding with setup.")
 
-    run("pip install --upgrade pip")
-    run("pip install poetry")
-    run("poetry update")
-    run("pre-commit install")
+    if os.path.exists(".venv"):
+        print("Virtual environment found. Proceeding with setup.")
+        run("pip install --upgrade pip")
+        run("pip install poetry")
+        run("poetry update")
+        run("pre-commit install")
+    else:
+        print("WARNING: No virtual environment '.venv'. Canceling auto-setup.")
 
 
 if __name__ == "__main__":
