@@ -5,16 +5,19 @@ description = ""
 license = "GPLv3"
 readme = "README.md"
 authors = [
-    "Raziel Kretschmer <s4005251@ba-sachsen.de>",
-    "Alexander Jahn <s4005236@ba-sachsen.de>",
-    "Maximilian Unger <s4005395@ba-sachsen.de>",
-    "Dustin Kowarsch <s4005362@ba-sachsen.de>"
+    "Raziel Kretschmer <s4005251@edu.dhsn.de>",
+    "Alexander Jahn <s4005236@edu.dhsn.de>",
+    "Maximilian Unger <s4005395@edu.dhsn.de>",
+    "Jaden Dustin Kowarsch <s4005362@edu.dhsn.de>"
 ]
 
 [tool.poetry.group.dev.dependencies]
 pylint = "^3.3.7"
 pre-commit = "^4.2.0"
+<<<<<<< HEAD
 black = "^25.1.0"
+=======
+>>>>>>> a5e9435 (rev: add pre-commit configuration and remove autohooks dependencies)
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
