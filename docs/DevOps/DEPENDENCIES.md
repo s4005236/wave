@@ -13,15 +13,11 @@ Additionally, the project uses pre-commit hooks for different tasks. These need 
 
 At the project root or in one of the submodules ```src/<module-name>```:
 
-__Step 1:__ Preferably, create a virtual environment  ```.venv``` in your chosen directory.
+__Step 1:__ Create a virtual environment  ```.venv``` in your chosen directory.
 
 __Step 2:__ Then you can run:
 ```
-python setup.py
-```
-or 
-```
-python setup-<submodule-name>.py
+python setup_dev.py
 ```
 This will call the setup script which does the following commands for you and sets up the project automatically.
 
