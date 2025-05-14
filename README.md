@@ -1,4 +1,10 @@
-# Wave
+<div align="center">
+    <img src="docs/media/wave_project_avatar.png" width="140">
+    <h1>Wave</h1>
+    <p align="center">
+    <strong>Wireless Automation via Engagement</strong>
+    </p>
+</div>
 
 ## Quick Dev Setup
 At _root_ or in a submodule (at `core`, `image`, `device` or `ui`):
