@@ -1,12 +1,13 @@
 from dataclasses import dataclass, field
-from ..enums.gesture_types import GestureTypes
-from ..enums.bodyparts import Fingers
 from uuid import UUID, uuid4
+from src.enums.gesture_types import GestureTypes
+from src.enums.bodyparts import Fingers
 
 
 @dataclass
-class Gesture():
+class Gesture:
     """A base class representing a gesture."""
+
     id: str
     name: str
     type: GestureTypes
