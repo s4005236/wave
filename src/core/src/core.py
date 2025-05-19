@@ -1,5 +1,5 @@
-import yaml
 import logging
+import yaml
 from src.core.src.gesture import Gesture
 from src.enums.gesture_types import GestureTypes
 from src.enums.bodyparts import Fingers
@@ -59,4 +59,3 @@ class Core:
 
 if __name__ == "__main__":
     core = Core()
-    print(core.gestures)
