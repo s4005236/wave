@@ -23,7 +23,7 @@ A more complete description of the parameters.
 #### id
 The ID is set in the configuration file of the gesture. It has to be unique, otherwise the core will ignore the corresponding gesture.  
 The suggested format is `namespace:gesture`.  
-Example: `gangster:thumb_up`
+Example: `wave:thumb_up`
 
 #### components
 Components are a list of [bodyparts](BODYPARTS.md) which belong to the gesture. If the image processor detects all of the components it will trigger this gesture.  
@@ -68,12 +68,12 @@ A documentation for the API will follow when it's built.
 ## File / Definition
 The gestures are defined in [YAML](https://yaml.org/) files. All data is defined as a top level keyword with its value. See the example below. Missing optional values are replaced with their default.  
 ```yaml
-id: "gangster:rpeace"
+id: "wave:rpeace"
 components:
     - RINDEX
     - RMIDDLE
 type: STILL
 name: "Right-hand Peace Sign"
 events:
-    - "gangster:peace"
+    - "wave:peace"
 ```
