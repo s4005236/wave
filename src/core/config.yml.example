@@ -23,3 +23,22 @@ gestures:
       - close_windows
     components:
       - RTHUMB
+
+##########################
+# Components             #
+##########################
+image_processors:
+  - name: "Bathroom"
+    hostname: "localhost"
+    port: 3000
+  - name: "Bedroom"
+    hostname: "192.168.2.26"
+    port: 25874
+
+device_managers:
+  - name: "Home NAS"
+    hostname: "nas.example.com"
+    port: 5000
+  - name: "Homenet ESP32"
+    hostname: "192.168.2.100"
+    port: 36487
