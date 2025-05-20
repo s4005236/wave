@@ -48,7 +48,7 @@ class Core:
     def start(self) -> None:
         """
         Makes a connection to the IP and DM and sends the relevant data.
-        It also start the run loop.
+        It also starts the run loop.
         """
         # This currently is only a stub to mark what is to come
         # TODO This function should make a connection to the IP and DM and send
