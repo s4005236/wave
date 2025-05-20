@@ -1,5 +1,5 @@
-import yaml
 import logging
+import yaml
 from src.core.src.gesture import Gesture
 from src.enums.gesture_types import GestureTypes
 from src.enums.bodyparts import Fingers
@@ -21,13 +21,13 @@ class Core:
 
     def reload_config(self, file: str = "config.yml") -> None:
         """Reloads the config using the given config file"""
-        with open(file) as config_file:
+        with open(file, encoding="utf-8") as config_file:
             raw_config: dict = yaml.safe_load(config_file)
 
         for gesture in raw_config["gestures"]:
             gesture_id: str = gesture["id"].lower()
             if gesture_id in self._gesture_ids:
-                log.warning(f"{gesture_id} already existing; ignoring")
+                log.warning("%s already existing; ignoring", gesture_id)
                 continue
             else:
                 self._gesture_ids.append(gesture_id)
@@ -46,12 +46,16 @@ class Core:
                 )
 
     def start(self) -> None:
+        """
+        Makes a connection to the IP and DM and sends the relevant data.
+        It also starts the run loop.
+        """
         # This currently is only a stub to mark what is to come
-        # TODO This function should make a connection to the IP and DM and send the relevant data
+        # TODO This function should make a connection to the IP and DM and send
+        # the relevant data
         # It also starts a run loop
         pass
 
 
 if __name__ == "__main__":
     core = Core()
-    print(core.gestures)
