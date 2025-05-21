@@ -3,6 +3,7 @@ The ConfigHolder class is for easier handling and sharing of the config.
 """
 
 import logging
+import os
 from uuid import UUID
 import yaml
 from core.src.gesture import Gesture
@@ -20,8 +21,13 @@ class ConfigHolder:
     getting and setting.
     """
 
-    def __init__(self, file: str = "config.ini"):
-        self._filename = file
+    def __init__(self, file: str | None = None):
+        if file is None:
+            self._filename = os.path.join(
+                os.path.dirname(__file__), "config.yml"
+            )
+        else:
+            self._filename = file
         self.gestures: dict[UUID, Gesture] = {}
         self._gesture_ids: list = []
         self._image_processors: dict[UUID, ImageProcessor] = {}
@@ -88,8 +94,7 @@ class ConfigHolder:
 
     @gestures.setter
     def gestures(self, value) -> None:
-        # pylint: disable=unused-argument
-        log.warning("A module tried to overwrite the gestures! Not doing it.")
+        self.gestures = value
 
     @property
     def image_processors(self) -> list[ImageProcessor]:
@@ -97,8 +102,7 @@ class ConfigHolder:
 
     @image_processors.setter
     def image_processors(self, value):
-        # pylint: disable=unused-argument
-        log.warning("A module tried to overwrite the IPs! Not doing it.")
+        self._image_processors = value
 
     @property
     def device_managers(self) -> list[ImageProcessor]:
@@ -106,8 +110,7 @@ class ConfigHolder:
 
     @device_managers.setter
     def device_managers(self, value):
-        # pylint: disable=unused-argument
-        log.warning("A module tried to overwrite the DMs! Not doing it.")
+        self._device_managers = value
 
     @property
     def api_bind_address(self):
@@ -115,10 +118,7 @@ class ConfigHolder:
 
     @api_bind_address.setter
     def api_bind_address(self, value):
-        # pylint: disable=unused-argument
-        log.warning(
-            "A module tried to overwrite the bind address! Not doing it."
-        )
+        self._api_bind_address = value
 
     @property
     def api_port(self):
@@ -126,5 +126,4 @@ class ConfigHolder:
 
     @api_port.setter
     def api_port(self, value):
-        # pylint: disable=unused-argument
-        log.warning("A module tried to overwrite the API port! Not doing it.")
+        self._api_port = int(value)
