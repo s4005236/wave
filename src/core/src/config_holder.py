@@ -28,7 +28,7 @@ class ConfigHolder:
             )
         else:
             self._filename = file
-        self.gestures: dict[UUID, Gesture] = {}
+        self._gestures: dict[UUID, Gesture] = {}
         self._gesture_ids: list = []
         self._image_processors: dict[UUID, ImageProcessor] = {}
         self._device_managers: dict[UUID, DeviceManager] = {}
@@ -90,11 +90,11 @@ class ConfigHolder:
 
     @property
     def gestures(self) -> list[Gesture]:
-        return self.gestures
+        return self._gestures
 
     @gestures.setter
     def gestures(self, value) -> None:
-        self.gestures = value
+        self._gestures = value
 
     @property
     def image_processors(self) -> list[ImageProcessor]:
