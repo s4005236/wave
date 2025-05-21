@@ -3,6 +3,7 @@ The ConfigHolder class is for easier handling and sharing of the config.
 """
 
 import logging
+from uuid import UUID
 import yaml
 from src.core.src.gesture import Gesture
 from src.enums.gesture_types import GestureTypes
@@ -21,10 +22,10 @@ class ConfigHolder:
 
     def __init__(self, file: str = "config.ini"):
         self._filename = file
-        self.gestures: list[Gesture] = []
+        self.gestures: dict[UUID, Gesture] = {}
         self._gesture_ids: list = []
-        self._image_processors: list[ImageProcessor] = []
-        self._device_managers: list[DeviceManager] = []
+        self._image_processors: dict[UUID, ImageProcessor] = {}
+        self._device_managers: dict[UUID, DeviceManager] = {}
 
         self._load_config()
 
@@ -33,25 +34,45 @@ class ConfigHolder:
         with open(self._filename, encoding="utf-8") as config_file:
             raw_config: dict = yaml.safe_load(config_file)
 
+            self._load_gestures(raw_config)
+            self._load_ips(raw_config)
+            self._load_dms(raw_config)
+
+    def _load_gestures(self, raw_config: dict) -> None:
+        """Loads the gestures from the given config"""
         for gesture in raw_config["gestures"]:
             gesture_id: str = gesture["id"].lower()
             if gesture_id in self._gesture_ids:
                 log.warning("%s already existing; ignoring", gesture_id)
                 continue
             self._gesture_ids.append(gesture_id)
-            self.gestures.append(
-                Gesture(
-                    gesture_id,
-                    gesture["name"],
-                    type=GestureTypes(gesture["type"].lower()),
-                    power=int(gesture["power"]),
-                    events=gesture["events"],
-                    components=[
-                        Fingers(finger.lower())
-                        for finger in gesture["components"]
-                    ],
-                )
+            gesture = Gesture(
+                gesture_id,
+                gesture["name"],
+                type=GestureTypes(gesture["type"].lower()),
+                power=int(gesture["power"]),
+                events=gesture["events"],
+                components=[
+                    Fingers(finger.lower()) for finger in gesture["components"]
+                ],
             )
+            self.gestures[gesture.uuid] = gesture
+
+    def _load_ips(self, raw_config: dict):
+        """Loads the Image Processors from the given config"""
+        for ip in raw_config["image_processors"]:
+            processor = ImageProcessor(
+                hostname=ip["hostname"], port=int(ip["port"])
+            )
+            self._image_processors[processor.id] = processor
+
+    def _load_dms(self, raw_config: dict):
+        """Loads the Device Managers from the given config"""
+        for dm in raw_config["device_managers"]:
+            manager = DeviceManager(
+                hostname=dm["hostname"], port=int(dm["port"])
+            )
+            self._device_managers[manager.id] = manager
 
     @property
     def gestures(self) -> list[Gesture]:
