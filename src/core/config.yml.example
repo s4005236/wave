@@ -42,3 +42,10 @@ device_managers:
   - name: "Homenet ESP32"
     hostname: "192.168.2.100"
     port: 36487
+
+##########################
+# API                    #
+##########################
+api:
+  bind_address: "0.0.0.0"
+  port: 8000

@@ -17,4 +17,5 @@ def get_config():
 
 
 if __name__ == "__main__":
-    uvicorn.run(api)
+    config = get_config()
+    uvicorn.run(api, host=config.api_bind_address, port=config.api_port)

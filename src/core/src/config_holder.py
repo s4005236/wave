@@ -26,6 +26,8 @@ class ConfigHolder:
         self._gesture_ids: list = []
         self._image_processors: dict[UUID, ImageProcessor] = {}
         self._device_managers: dict[UUID, DeviceManager] = {}
+        self._api_bind_address: str = ""
+        self._api_port: int = None
 
         self._load_config()
 
@@ -37,6 +39,7 @@ class ConfigHolder:
             self._load_gestures(raw_config)
             self._load_ips(raw_config)
             self._load_dms(raw_config)
+            self._load_api_specs(raw_config)
 
     def _load_gestures(self, raw_config: dict) -> None:
         """Loads the gestures from the given config"""
@@ -74,6 +77,11 @@ class ConfigHolder:
             )
             self._device_managers[manager.id] = manager
 
+    def _load_api_specs(self, raw_config: dict):
+        """Loads the API specs from config"""
+        self._api_bind_address = raw_config["api"]["bind_address"]
+        self._api_port = int(raw_config["api"]["port"])
+
     @property
     def gestures(self) -> list[Gesture]:
         return self.gestures
@@ -100,3 +108,23 @@ class ConfigHolder:
     def device_managers(self, value):
         # pylint: disable=unused-argument
         log.warning("A module tried to overwrite the DMs! Not doing it.")
+
+    @property
+    def api_bind_address(self):
+        return self._api_bind_address
+
+    @api_bind_address.setter
+    def api_bind_address(self, value):
+        # pylint: disable=unused-argument
+        log.warning(
+            "A module tried to overwrite the bind address! Not doing it."
+        )
+
+    @property
+    def api_port(self):
+        return self._api_port
+
+    @api_port.setter
+    def api_port(self, value):
+        # pylint: disable=unused-argument
+        log.warning("A module tried to overwrite the API port! Not doing it.")
