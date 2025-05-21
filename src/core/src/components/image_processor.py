@@ -1,6 +1,6 @@
 """Represents an Image Processor and it's controls"""
 
-from BaseComponent import BaseComponent
+from core.src.components.base_component import BaseComponent
 
 
 class ImageProcessor(BaseComponent):

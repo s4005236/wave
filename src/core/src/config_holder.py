@@ -5,11 +5,11 @@ The ConfigHolder class is for easier handling and sharing of the config.
 import logging
 from uuid import UUID
 import yaml
-from src.core.src.gesture import Gesture
-from src.enums.gesture_types import GestureTypes
-from src.enums.bodyparts import Fingers
-from .components.ImageProcessor import ImageProcessor
-from .components.DeviceManager import DeviceManager
+from core.src.gesture import Gesture
+from enums.gesture_types import GestureTypes
+from enums.bodyparts import Fingers
+from .components.image_processor import ImageProcessor
+from .components.device_manager import DeviceManager
 
 log = logging.getLogger(__name__)
 

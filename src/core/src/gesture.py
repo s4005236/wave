@@ -1,7 +1,9 @@
+"""Hold the Gesture class"""
+
 from dataclasses import dataclass, field
 from uuid import UUID, uuid4
-from src.enums.gesture_types import GestureTypes
-from src.enums.bodyparts import Fingers
+from enums.gesture_types import GestureTypes
+from enums.bodyparts import Fingers
 
 
 @dataclass
