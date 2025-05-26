@@ -30,7 +30,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.black]
-line_length = 79
+line_length = 79                    # pep8 compliant
 target-version = ['py312']          # targets Python Version 3.12
 include = '\.pyi?$'                 #includes .py- and .pyi- files
 exclude = '''
@@ -49,4 +49,4 @@ exclude = '''
 
 [tool.isort]
 profile = "black"                   # applies black 
-line_length = 79
+line_length = 79                    # pep8 compliant
