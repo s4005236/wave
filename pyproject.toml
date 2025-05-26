@@ -51,3 +51,4 @@ exclude = '''
 [tool.isort]
 profile = "black"                   # applies standard black config 
 line_length = 79                    # pep8 compliant
+py_version = 312                    # targets Python Version 3.12
