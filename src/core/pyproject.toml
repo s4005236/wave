@@ -11,4 +11,3 @@ fastapi = {extras = ["standard"], version = "^0.115.12"}
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^4.2.0"
-
