@@ -49,5 +49,5 @@ exclude = '''
 '''                                 # standard excludes
 
 [tool.isort]
-profile = "black"                   # applies black 
+profile = "black"                   # applies standard black config 
 line_length = 79                    # pep8 compliant
