@@ -15,6 +15,7 @@ authors = [
 pylint = "^3.3.7"
 pre-commit = "^4.2.0"
 black = "^25.1.0"
+isort = "^6.0.1"
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
@@ -29,7 +30,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.black]
-line-length = 79
+line_length = 79
 target-version = ['py312']          # targets Python Version 3.12
 include = '\.pyi?$'                 #includes .py- and .pyi- files
 exclude = '''
@@ -46,8 +47,6 @@ exclude = '''
 )/
 '''                                 # standard excludes
 
-[tool.flake8]
-ignore = ["E203", "E266", "E501", "W503", "F403", "F401"]
-max-line-length = 79
-max-complexity = 18
-select = ["B","C","E","F","W","T4","B9"]
+[tool.isort]
+profile = "black"                   # applies black 
+line_length = 79
