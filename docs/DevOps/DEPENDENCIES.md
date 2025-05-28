@@ -49,6 +49,8 @@ poetry add <package-name>
 ```
 poetry remove <package-name>
 ```
+> **Note:** It is advised to run `poetry update` after removing a package to ensure that all subdependencies are installed correctly.
+
 - To refer to a package only used in development, add the ```--dev``` flag:
 ```
 poetry ... --dev <package-name>
