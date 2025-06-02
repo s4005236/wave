@@ -1,9 +1,7 @@
 ---
 name: New Feature
 about: New Feature Template
-title: "[FEAT]"
-labels: ''
-assignees: ''
+title: "[FEAT] ..."
 
 ---
 
