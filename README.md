@@ -6,6 +6,14 @@
     </p>
 </div>
 
+## Deployment Instructions
+
+First, see [System Requirements](./docs/DevOps/REQUIREMENTS.md) to ensure that your system can run the application properly.
+
+Then:
+
+...//TODO
+
 ## Quick Dev Setup
 At _root_ or in a submodule (at `core`, `image`, `device` or `ui`):
 
