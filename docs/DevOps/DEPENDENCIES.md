@@ -1,55 +1,22 @@
-# Dependencies
-Dependencies refer to all the external libraries, packages, or modules that the project needs to work properly.
+# List of Project Dependencies
+Below, all the dependencies needed for the project are listed with a short description explaining their purpose. The respective versions also need to be documented as precise as it is meaningful.
 
-## Goal
-The goal is to give each module its specific dependencies, while still making it easy to install the requirements of the entire system without too much hassle.
+## Global
+Global requirements that the whole application needs.
 
-## Structure
-This project uses [_poetry_](https://python-poetry.org/) for python packaging and dependency management. The _pyproject.toml_ files are used to maintain global dependencies as well as local ones in the specific submodules. When setting up globally, all the local dependencies get merged by the _pyproject.toml_ at root, so there is no need to setup all the modules manually.
-Additionally, the project uses pre-commit hooks for different tasks. These need to be activated in order to benefit from the functions.
+- ...
 
-## Dev Dependency Setup
-> The steps below apply to both global and local submodule setups.
+## Submodules
+Local requirements that only certain submodules need:
 
-At the project root or in one of the submodules ```src/<module-name>```:
+### Core
+- ...
 
-__Step 1:__ Create a virtual environment  ```.venv``` in your chosen directory.
+### Device
+- ...
 
-__Step 2:__ Then you can run:
-```
-python setup_dev.py
-```
-This will call the setup script which does the following commands for you and sets up the project automatically.
+### Image
+- ...
 
-You're all set now!
-
----
-
-__Alternatively:__ When setting up manually, instead of Step 2 you should run:
-```
-pip install poetry
-poetry update
-pre-commit install
-```
-This will install all packages currently specified in the pyproject.toml via _poetry_
-and also install all pre-commit hooks.
-
----
-
-## Useful poetry commands
-- To update all dependencies, run:
-```
-poetry update
-```
-- To add a new package, run:
-```
-poetry add <package-name>
-```
-- To remove a package, run:
-```
-poetry remove <package-name>
-```
-- To refer to a package only used in development, add the ```--dev``` flag:
-```
-poetry ... --dev <package-name>
-```
+### UI
+- ...
