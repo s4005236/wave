@@ -1,8 +1,15 @@
 repos:
+  - repo: https://github.com/pycqa/isort
+    rev: 6.0.1
+    hooks:
+      - id: isort
+        name: isort (python)
+        args: ["--profile", "black", "--filter-files"]
+        language_version: python3.12
   - repo: https://github.com/psf/black
-    rev: 24.4.0
+    rev: 25.1.0
     hooks:
       - id: black
-        args: [--color, --verbose]
+        name: black (python)
         pass_filenames: true
         language_version: python3.12

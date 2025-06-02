@@ -8,7 +8,7 @@ To ensure compliance with this standard, the following tools are used in this pr
 
 ### Locally (pre-commit)
 - **Black**: A code formatter for Python that enforces PEP8 by automatically reformatting code. If formatting issues are found, Black modifies the affected files. The commit fails, and you must stage the changes and retry the commit.
-- **(TODO) isort**: //
+- **isort**: A Python utility that automatically sorts and organizes imports according to PEP8. If import order issues are found, isort modifies the affected files. The commit fails, and you must stage the changes and retry the commit.
 
 ### CI/CD
 - **Pylint**: Runs as a GitHub Action and rates the code from 0 to 10. A score of 10 means the code fully follows the style rules. The pipeline fails if the score is below 8.0.

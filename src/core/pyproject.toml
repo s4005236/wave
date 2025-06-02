@@ -10,4 +10,4 @@ pyyaml = "^6.0.2"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^4.2.0"
-
+tomlkit = "^0.13.2"
