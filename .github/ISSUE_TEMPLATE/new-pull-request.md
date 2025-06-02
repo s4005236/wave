@@ -1,9 +1,7 @@
 ---
 name: New Pull Request
 about: Pull Request Template
-title: "[PR]"
-labels: ''
-assignees: ''
+title: "[PR] ..."
 
 ---
 
