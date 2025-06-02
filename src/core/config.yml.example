@@ -4,7 +4,7 @@
 # Gestures               #
 ##########################
 gestures:
-  - id: "gangster:lpeace"
+  - id: "wave:lpeace"
     name: "Left Peace"
     type: "STILL"
     power: 0
@@ -14,7 +14,7 @@ gestures:
     components:
       - LMIDDLE
       - LINDEX
-  - id: "gangster:rthumb_up"
+  - id: "wave:rthumb_up"
     name: "Right thumb up"
     type: "STILL"
     power: 10
