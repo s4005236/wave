@@ -1,7 +1,7 @@
 ---
 name: Bug Report
 about: Bug Report Template
-title: "[BUG] ..."
+title: "bug: ..."
 ---
 
 **Description:**

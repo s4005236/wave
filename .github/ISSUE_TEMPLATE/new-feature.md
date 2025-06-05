@@ -1,7 +1,7 @@
 ---
 name: New Feature
 about: New Feature Template
-title: "[FEAT] ..."
+title: "feat: ..."
 ---
 
 **Description**
