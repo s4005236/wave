@@ -3,9 +3,9 @@ This script sets up the project by
 installing dependencies and setting up pre-commit hooks.
 """
 
+import os
 import subprocess
 import sys
-import os
 
 
 def run(cmd: str):
@@ -34,7 +34,7 @@ def main():
 
     if os.path.exists(".venv"):
         print("Virtual environment found. Proceeding with setup.")
-        run("pip install --upgrade pip")
+        run("python -m pip install --upgrade pip")
         run("pip install poetry")
         run("poetry update")
         run("pre-commit install")
