@@ -2,22 +2,24 @@
 name: Bug Report
 about: Bug Report Template
 title: "[BUG] ..."
-
 ---
 
-**Bug Description**
+**Description:**
+
 ...
 
-**Steps to Reproduction:**
+**Steps to reproduce:**
 1. ...
 
-**Expected behavior**
+**Expected behavior:**
+
 ...
 
-**System Information:**
-- Type of Device: [e.g. desktop, phone, raspy]
-- OS: [e.g. linux, windows]
- - Browser [e.g. chrome, safari]
+**System information:**
+- Type of device: [e.g. Desktop, Phone, Raspy]
+- OS: [e.g. Linux, Windows]
+- Browser [e.g. Chrome, Firefox]
 
-**Additional information, media**
+**Additional information, media:**
+
 ...
