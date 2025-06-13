@@ -3,9 +3,18 @@ This script sets up the project by
 installing dependencies and setting up pre-commit hooks.
 """
 
-import os
 import subprocess
 import sys
+
+
+def is_venv():
+    """
+    Check if a venv was setup. PEP8 sufficient.
+
+    Check [docs](https://docs.python.org/3/library/venv.html#how-venvs-work)
+    for more information.
+    """
+    return sys.prefix != sys.base_prefix
 
 
 def run(cmd: str):
@@ -32,7 +41,7 @@ def main():
         - Install pre-commit hooks
     """
 
-    if os.path.exists(".venv"):
+    if is_venv():
         print("Virtual environment found. Proceeding with setup.")
         run("python -m pip install --upgrade pip")
         run("pip install poetry")
