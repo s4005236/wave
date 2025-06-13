@@ -5,7 +5,16 @@ installing dependencies and setting up pre-commit hooks.
 
 import subprocess
 import sys
-import os
+
+
+def is_venv():
+    """
+    Check if a venv was setup. PEP8 sufficient.
+
+    See [docs](https://docs.python.org/3/library/venv.html#how-venvs-work)
+    for more information.
+    """
+    return sys.prefix != sys.base_prefix
 
 
 def run(cmd: str):
@@ -32,11 +41,12 @@ def main():
         - Install pre-commit hooks
     """
 
-    if os.path.exists(".venv"):
+    if is_venv():
         print("Virtual environment found. Proceeding with setup.")
-        run("pip install --upgrade pip")
+        run("python -m pip install --upgrade pip")
         run("pip install poetry")
         run("poetry update")
+        run("pip install poetry")
         run("pre-commit install")
     else:
         print("WARNING: No virtual environment '.venv'. Canceling auto-setup.")
