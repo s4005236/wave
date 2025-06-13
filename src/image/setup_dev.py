@@ -11,7 +11,7 @@ def is_venv():
     """
     Check if a venv was setup. PEP8 sufficient.
 
-    Check [docs](https://docs.python.org/3/library/venv.html#how-venvs-work)
+    See [docs](https://docs.python.org/3/library/venv.html#how-venvs-work)
     for more information.
     """
     return sys.prefix != sys.base_prefix
