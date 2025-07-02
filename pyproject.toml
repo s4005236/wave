@@ -25,6 +25,7 @@ core = { path = "./src/core" }
 device = { path = "./src/device" }
 image = { path = "./src/image" }
 ui = { path = "./src/ui" }
+opencv-python = "^4.11.0.86"
 
 [build-system]
 requires = ["poetry-core"]
