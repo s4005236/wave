@@ -11,6 +11,12 @@ authors = [
     "Jaden Dustin Kowarsch <s4005362@edu.dhsn.de>"
 ]
 
+#global dependencies
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+pyyaml = "^6.0.3"
+
+#development dependencies
 [tool.poetry.group.dev.dependencies]
 pylint = "^3.3.7"
 pre-commit = "^4.2.0"
@@ -18,13 +24,11 @@ black = "^25.1.0"
 isort = "^6.0.1"
 tomlkit = "^0.13.2"
 
-[tool.poetry.dependencies]
-python = ">=3.11,<3.12"
-
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+#black config
 [tool.black]
 line_length = 79                    # pep8 compliant
 target-version = ['py311']          # targets Python Version 3.11
@@ -43,6 +47,7 @@ exclude = '''
 )/
 '''                                 # standard excludes
 
+#isort config
 [tool.isort]
 profile = "black"                   # applies standard black config 
 line_length = 79                    # pep8 compliant

@@ -1,22 +1,25 @@
 # Requirements
-Below, all the requirements needed for the project are listed. Their respective versions also need to be documented as precise as it is meaningful.
+The following requirements are needed in order to run WAVE on your system.
 
-## Global
-Global requirements that the whole application needs:
+## Hardware Requirements
 
-- ...
+| Requirement           | needs         |
+|-----------------------|--------------:|
+| Raspberry Pi board    | ...           |
+| Python Version        | 3.11          |
+| Package Manager       | ...           |
 
-## Submodules
-Local requirements that only certain submodules need:
+## Software Requirements
 
-### Core
-- ...
+| Requirement           | needs         |
+|-----------------------|--------------:|
+| OS                    | ...           |
+| Python Version        | 3.11          |
+| Package Manager       | ...           |
 
-### Device
-- ...
+# Development
 
-### Image
-- ...
-
-### UI
-- ...
+| Tool                  | recommended   |
+|-----------------------|--------------:|
+|  IDE                  | VSCode        |
+|                       |               |
