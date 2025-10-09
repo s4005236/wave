@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "wave"
 version = "0.0.1"
-description = ""
+description = "Wireless Automation via Engagement"
 license = "GPLv3"
 readme = "README.md"
 authors = [
