@@ -34,11 +34,6 @@ def run(cmd: str):
 def main():
     """
     Defines the commands to setup the project.
-    workload:
-        - Upgrade pip
-        - Install pip and poetry
-        - Install dependencies using poetry
-        - Install pre-commit hooks
     """
 
     if is_venv():

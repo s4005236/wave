@@ -19,12 +19,7 @@ isort = "^6.0.1"
 tomlkit = "^0.13.2"
 
 [tool.poetry.dependencies]
-python = ">=3.12,<3.13"
-
-core = { path = "./src/core" }
-device = { path = "./src/device" }
-image = { path = "./src/image" }
-ui = { path = "./src/ui" }
+python = ">=3.11,<3.12"
 
 [build-system]
 requires = ["poetry-core"]
@@ -32,7 +27,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 line_length = 79                    # pep8 compliant
-target-version = ['py312']          # targets Python Version 3.12
+target-version = ['py311']          # targets Python Version 3.11
 include = '\.pyi?$'                 # includes .py- and .pyi- files
 exclude = '''
 /(
@@ -51,4 +46,4 @@ exclude = '''
 [tool.isort]
 profile = "black"                   # applies standard black config 
 line_length = 79                    # pep8 compliant
-py_version = 312                    # targets Python Version 3.12
+py_version = 311                    # targets Python Version 3.11
