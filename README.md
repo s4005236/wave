@@ -7,4 +7,16 @@ __Step 1:__ Create a Virtual environment `.venv`.
 
 __Step 2:__ Run setup script: `python setup_dev.py`
 
-__All done!__ For further information view [DevOps docs](./docs/DevOps/DEPENDENCIES.md).
+__All done!__
+
+---
+
+## Documentation
+For further documentation, please please consult the following documents:
+
+- Core Documentation: [open]()
+- Device Documentatin [open]()
+- Image Processor Documentation: [open]()
+- WebApp Documentation [open]()
+
+- DevOps Documentation: [open]()
