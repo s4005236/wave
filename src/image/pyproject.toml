@@ -3,7 +3,7 @@ name = "image"
 version = "0.0.1"
 description = ""
 # authors = []
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 
 [tool.poetry.dependencies]
 opencv-python = "^4.11.0.86"
