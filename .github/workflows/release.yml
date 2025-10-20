@@ -9,4 +9,4 @@ jobs:
       - uses: actions/checkout@v4
       - uses: EffectiveRange/python-package-github-action@v1
         with:
-          debian-dist-type: 'fpm-deb'
+          debian-dist-type: 'library'
