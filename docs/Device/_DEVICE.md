@@ -1,3 +1,3 @@
-# Device
+# Device Manager
 
-TODO
+TODO add documentation overview for device manager
