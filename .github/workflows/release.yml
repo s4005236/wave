@@ -5,8 +5,20 @@ on: push
 jobs:
   package:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    strategy:
+      matrix:
+        python-version: ["3.11"]
     steps:
       - uses: actions/checkout@v4
-      - uses: EffectiveRange/python-package-github-action@v1
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
         with:
-          debian-dist-type: 'library'
+          python-version: ${{ matrix.python-version }}
+      - name: Package Debian Image
+        uses: EffectiveRange/python-package-github-action@v2
+        with:
+          package-version: '0.0.1'
+          debian-dist-type: 'fpm-deb'
+          python-version: '3.11'
