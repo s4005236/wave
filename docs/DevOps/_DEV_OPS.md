@@ -16,13 +16,15 @@ The term DevOps is a blend from the sectors "Software **Dev**elopment" and "IT-*
 The following DevOps topics are currently utilized in WAVE:
 
 - [Code Styling Guide](CODE_STYLING.md)
-- [GitHub Issue Templates](GITHUB_TEMPLATES.md)
-- [GitHub Settings](GITHUB_SETTINGS.md)
+
 - [Dependency Management](DEPENDENCY_MANAGEMENT.md)
+
 - [Hard- & Software Requirements](REQUIREMENTS.md)
-- GitHub Actions
-    - [Pylint Workflow](GITHUB_ACTION_PYLINT.md)
-    - [Debian Packaging Workflow](GITHUB_ACTION_RELEASE.md)
+
+- GitHub
+    - [GitHub Repository Settings](GITHUB_SETTINGS.md)
+    - [GitHub Actions](GITHUB_ACTIONS.md)
+
 - [Distribution, Releases, Versioning](DISTRIBUTION.md)
 
 ---

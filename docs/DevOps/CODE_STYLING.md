@@ -26,7 +26,7 @@ When this happens, the commit fails and the changes made by isort must be staged
 ### GitHub Actions
 - **Pylint**: Runs as an action when and rates the code from 0 to 10. A score of 10 means the code fully follows the style rules. The pipeline fails if the score is below 8.0.
 
-More details on this workflow are provided [here](./GITHUB_ACTION_PYLINT.md).
+More details on this workflow are provided [here](./GITHUB_ACTIONS.md).
 
 ---
 
