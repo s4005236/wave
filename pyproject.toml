@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "wave"
 version = "0.0.1"
-description = ""
+description = "Wireless Automation via Engagement"
 license = "GPLv3"
 readme = "README.md"
 authors = [
@@ -11,6 +11,14 @@ authors = [
     "Jaden Dustin Kowarsch <s4005362@edu.dhsn.de>"
 ]
 
+#global dependencies
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+pyyaml = "^6.0.3"
+
+#development dependencies
+wheel = "^0.45.1"
+setuptools = "^80.9.0"
 [tool.poetry.group.dev.dependencies]
 pylint = "^3.3.7"
 pre-commit = "^4.2.0"
@@ -18,21 +26,14 @@ black = "^25.1.0"
 isort = "^6.0.1"
 tomlkit = "^0.13.2"
 
-[tool.poetry.dependencies]
-python = ">=3.12,<3.13"
-
-core = { path = "./src/core" }
-device = { path = "./src/device" }
-image = { path = "./src/image" }
-ui = { path = "./src/ui" }
-
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+#black config
 [tool.black]
 line_length = 79                    # pep8 compliant
-target-version = ['py312']          # targets Python Version 3.12
+target-version = ['py311']          # targets Python Version 3.11
 include = '\.pyi?$'                 # includes .py- and .pyi- files
 exclude = '''
 /(
@@ -48,7 +49,8 @@ exclude = '''
 )/
 '''                                 # standard excludes
 
+#isort config
 [tool.isort]
 profile = "black"                   # applies standard black config 
 line_length = 79                    # pep8 compliant
-py_version = 312                    # targets Python Version 3.12
+py_version = 311                    # targets Python Version 3.11

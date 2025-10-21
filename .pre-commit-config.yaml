@@ -1,3 +1,4 @@
+# configuration for pre-commit hooks utilizing isort and black
 repos:
   - repo: https://github.com/pycqa/isort
     rev: 6.0.1
