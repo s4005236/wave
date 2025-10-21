@@ -1,4 +1,4 @@
-# GitHub Templates
+# GitHub Action Templates
 
 TODO
 
