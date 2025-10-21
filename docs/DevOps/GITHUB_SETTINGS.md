@@ -33,6 +33,9 @@ After a sufficient number of developers approved the changes, the pull request c
 
 - Branch Protection
 - Issue Templates
+- Merge Requests
+    - Review Process
+    - Copilot review
 
 
 
