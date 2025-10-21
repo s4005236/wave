@@ -1,3 +1,4 @@
+
 # GitHub Settings
 
 The following provides a summary of the settings explicitly configured for the WAVE GitHub repository.
