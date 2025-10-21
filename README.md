@@ -16,7 +16,7 @@ For further documentation, please please consult the following documents:
 
 - Module Documentation
     - Core Documentation: [open](/docs/Core/_CORE.md)
-    - Device Documentatin [open](/docs/Device/_DEVICE.md)
+    - Device Documentation: [open](/docs/Device/_DEVICE.md)
     - Image Processor Documentation: [open](/docs/ImageProcessor/_IMAGE_PROCESSOR.md)
     - WebApp Documentation [open](/docs/WebApp/_WEB_APP.md)
 

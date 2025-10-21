@@ -17,9 +17,9 @@ The following DevOps topics are currently utilized in WAVE:
 
 - [Code Styling Guide](CODE_STYLING.md)
 - [GitHub Issue Templates](GITHUB_TEMPLATES.md)
-- [Dependency Management](DEPENDENCIES.md)
+- [Dependency Management](DEPENDENCY_MANAGEMENT.md)
 - [Hard- & Software Requirements](REQUIREMENTS.md)
-- [GitHub Actions](GITHUB_ACTIONS.md)
+- GitHub Actions
     - [Pylint Workflow](GITHUB_ACTION_PYLINT.md)
     - [Debian Packaging Workflow](GITHUB_ACTION_RELEASE.md)
 - [Distribution, Releases, Versioning](DISTRIBUTION.md)
