@@ -3,7 +3,8 @@
 TODO
 
 
-## Issue Templates
+- Branch Protection
+- Issue Templates
 
 
 

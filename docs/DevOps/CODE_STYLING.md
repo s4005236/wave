@@ -8,7 +8,7 @@ To ensure compliance with the PEP8 standard, the following tools are used in thi
 
 ### VSCode Extensions
 
-- **Pylint Extension**: An extension for VSCode, used for syntax highlighting and code styling. It is advised to use this extension to instantly get a feedback on the quality of your code.
+- **Pylint Extension**: An extension for VSCode, used for syntax highlighting and code styling. It is advised to use this extension to instantly get a feedback on the quality of your code. The current configuration for pylint can be viewed in the `.pylintrc` file at root.
 
 ### _pre-commit_ hooks
 
