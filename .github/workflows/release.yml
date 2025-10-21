@@ -36,7 +36,7 @@ jobs:
             --name wave \
             --deb-user pi \
             --deb-group pi \
-            --maintainer "" \
+            --maintainer "Alexander Jahn" <s4005236@edu.dhsn.de> \
             .
       - name: Upload Debian package
         uses: actions/upload-artifact@v4
