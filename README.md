@@ -14,9 +14,10 @@ __All done!__
 ## Documentation
 For further documentation, please please consult the following documents:
 
-- Core Documentation: [open](/docs/Core/_CORE.md)
-- Device Documentatin [open](/docs/Device/_DEVICE.md)
-- Image Processor Documentation: [open](/docs/ImageProcessor/_IMAGE_PROCESSOR.md)
-- WebApp Documentation [open](/docs/WebApp/_WEB_APP.md)
+- Module Documentation
+    - Core Documentation: [open](/docs/Core/_CORE.md)
+    - Device Documentatin [open](/docs/Device/_DEVICE.md)
+    - Image Processor Documentation: [open](/docs/ImageProcessor/_IMAGE_PROCESSOR.md)
+    - WebApp Documentation [open](/docs/WebApp/_WEB_APP.md)
 
 - DevOps Documentation: [open](/docs/DevOps/_DEV_OPS.md)
