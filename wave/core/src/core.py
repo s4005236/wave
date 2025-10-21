@@ -1,8 +1,9 @@
 import logging
+from wave.core.src.gesture import Gesture
+from wave.enums.bodyparts import Fingers
+from wave.enums.gesture_types import GestureTypes
+
 import yaml
-from src.core.src.gesture import Gesture
-from src.enums.bodyparts import Fingers
-from src.enums.gesture_types import GestureTypes
 
 log = logging.getLogger(__name__)
 
