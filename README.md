@@ -1,11 +1,14 @@
 # Wave
 
-## Quick Dev Setup
-At _root_ or in a submodule (at `core`, `image`, `device` or `ui`):
+## Development Setup
+At the project root:
 
-__Step 1:__ Create a Virtual environment `.venv`.
+__Step 1:__ Create a virtual environment  `.venv`.
 
-__Step 2:__ Run setup script: `python setup_dev.py`
+__Step 2:__ Then run:
+```
+python setup_dev.py
+```
 
 __All done!__
 
