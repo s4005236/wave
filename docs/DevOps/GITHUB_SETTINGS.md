@@ -5,6 +5,9 @@ TODO
 
 - Branch Protection
 - Issue Templates
+- Merge Requests
+    - Review Process
+    - Copilot review
 
 
 

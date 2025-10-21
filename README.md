@@ -14,8 +14,12 @@ __All done!__
 
 ---
 
-## Documentation
-For further documentation, please please consult the following documents:
+## About the project
+
+TODO
+
+## Documentation Ressources
+For further documentation, please consult the following documents:
 
 - Module Documentation
     - Core Documentation: [open](/docs/Core/_CORE.md)
