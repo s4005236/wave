@@ -3,7 +3,7 @@ Below is an overview of the terms used in this project.
 
 ## Architecture
 The architecture of the project. It describes which service sends data to another. The teams or tasks for this project are split into seperated by these components. See the components below.  
-![Architecture Diagram](media/architecture.svg "Architecture")
+![Architecture Diagram](_media/architecture.svg "Architecture")
 
 ## Image Processor
 The image processor (IP) is responsible for processing the raw image data of a camera. It should detect the gestures sent to it on connection by the core. See the [gestures section](GESTURES.md) for more information on this process. It will then send the detected gestures back to the core.  
