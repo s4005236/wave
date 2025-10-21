@@ -37,3 +37,7 @@ poetry remove <package-name>
 ```
 poetry ... --dev <package-name>
 ```
+
+---
+
+> Back to [DevOps](./_DEV_OPS.md).

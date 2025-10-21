@@ -12,3 +12,7 @@ To ensure compliance with this standard, the following tools are used in this pr
 
 ### CI/CD
 - **Pylint**: Runs as a GitHub Action and rates the code from 0 to 10. A score of 10 means the code fully follows the style rules. The pipeline fails if the score is below 8.0.
+
+---
+
+> Back to [DevOps](./_DEV_OPS.md).
