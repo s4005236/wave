@@ -6,6 +6,20 @@
     </p>
 </div>
 
+# About the project
+
+WAVE enables you to control your home without touching any buttons or screens. Use a personalized system of gestures to manage all your smart devices at the wink of your hand.
+
+## Features
+
+_TODO: feature list_
+
+## User Guide
+
+For more information on how to use WAVE, please refer to our [User Guide](/docs/User/_USER_GUIDE.md).
+
+# Development and Contributing
+
 ## Development Setup
 At the project root:
 
@@ -18,19 +32,6 @@ python setup_dev.py
 
 __All done!__
 
----
-
-## About the project
-
-WAVE enables you to control your home without touching any buttons or screens. Use a personalized system of gestures to handle all your devices at the wink of your hand.
-
-## Features
-
-_TODO: feature list_
-
-## User Guide
-
-For more information on how to use WAVE, please refer to our [User Guide](/docs/User/_USER_GUIDE.md).
 
 ## Documentation Ressources
 For further  technical documentation, please consult the following documents:
