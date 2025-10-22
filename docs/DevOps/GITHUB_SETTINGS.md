@@ -37,6 +37,17 @@ After a sufficient number of developers approved the changes, the pull request c
     - Review Process
     - Copilot review
 
+## Merge Requests
+
+TODO
+
+### Review Process
+
+TODO
+
+### Copilot Review
+
+TODO
 
 
 ---
