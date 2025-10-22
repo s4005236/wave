@@ -1,14 +1,26 @@
 # GitHub Settings
 
+The following provides a summary over the most important settings configured for the [WAVE GitHub repository](https://github.com/s4005236/wave).
+
+## Branch Protection
+
 TODO
 
+## Issue Templates
 
-- Branch Protection
-- Issue Templates
-- Merge Requests
-    - Review Process
-    - Copilot review
+TODO
 
+## Merge Requests
+
+TODO
+
+### Review Process
+
+TODO
+
+### Copilot Review
+
+TODO
 
 
 ---
