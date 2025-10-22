@@ -4,7 +4,7 @@ Details on how WAVE is supplied to its users.
 
 ## GitHub Releases
 
-The main focus of the distribution process is to make the installation process as easy and hassle free as possible for the potential users. WAVE uses the GitHub Release functionality on the repo start page to distribute all needed ressources.
+The main focus of the distribution process is to make the installation process as easy and hassle free as possible for the potential users. WAVE uses the GitHub Release functionality on the start page of the repository to distribute all needed ressources.
 
 ## Releases
 
