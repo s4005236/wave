@@ -42,6 +42,14 @@ poetry run wave
 - control smart home devices
 - on raspis, so easy to place in rooms etc., not bound to a location, wireless etc.
 
+Wave is a lightweight gesture-recognition platform for controlling smart home devices. It is designed to run on Raspberry Pi units so devices can be placed easily in rooms, operate wirelessly, and are not tied to a single location. Gesture inputs are translated into control commands for lights, outlets, media, and other home automation endpoints.
+
+Key points:
+- Gesture-based control for common smart-home actions (lighting, media, power, etc.)
+- Deployable on Raspberry Pi: small, inexpensive, and easy to place in any room
+- Wireless operation and flexible placement — not bound to a fixed location
+- Focus on low-latency, modular processing and integrations with device drivers and the WebApp
+
 ## Documentation Ressources
 For further technical documentation, please consult the following documents:
 
