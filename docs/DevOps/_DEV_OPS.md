@@ -4,7 +4,7 @@ Welcome to the DevOps Documentation for WAVE.
 
 ```
 Author: Alexander Jahn <s4005236@edu.dhsn.de>
-Last updated: 21.10.2025
+Last updated: 22.10.2025
 ```
 
 ## Introduction

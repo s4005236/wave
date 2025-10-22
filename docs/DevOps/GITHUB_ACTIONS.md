@@ -22,16 +22,16 @@ For more information about so enforced code styling practises, please refer to W
 
 This workflow is triggered by a push into the main branch, commonly after a successful merge, in succession to a successful merge request.
 
-It's purpose is to package the whole application into a `.deb` image file for the `ARMhf` architecture used on raspberry pi.
+It's purpose is to package the whole application into a `.deb` image file for the ARMhf architecture used on raspberry pi.
 
 To accomplish this, the workflow
 - builds the application with all dependencies needed
 - uses the [_fpm_ package management tool](https://github.com/jordansissel/fpm) to create the image
 - proceeds to upload the created image as an artifact to the GitHub repository
 
-The artifact can then be provided as a release on the GitHub home page of the application.
+The artifact can then be provided as a Release on the GitHub start page of the application.
 
-For further documentation on release and versioning please refer to the [Distribution Documentation](./DISTRIBUTION.md).
+For further documentation on releases and versioning please refer to the [Distribution Documentation](./DISTRIBUTION.md).
 
 ---
 
