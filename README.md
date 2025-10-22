@@ -38,6 +38,10 @@ poetry run wave
 ```
 
 
+- gesture recognition
+- control smart home devices
+- on raspis, so easy to place in rooms etc., not bound to a location, wireless etc.
+
 ## Documentation Ressources
 For further technical documentation, please consult the following documents:
 
