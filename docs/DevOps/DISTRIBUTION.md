@@ -1,5 +1,6 @@
 # Distribution
-...this file will define the deployment of the produced code with its requirements.
+
+Details on how WAVE is supplied to its users.
 
 ## Graph
 The following graph shows the steps of the code deployment pipeline:

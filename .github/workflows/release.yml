@@ -1,0 +1,48 @@
+name: Debian Image Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+          poetry install --no-root
+      - name: Install fpm
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ruby ruby-dev build-essential
+          sudo gem install --no-document fpm
+      - name: Build Debian package
+        run: |
+          fpm -s python -t deb \
+            --python-bin python3 \
+            --python-install-lib /usr/lib/python3/dist-packages \
+            --architecture armhf \
+            --version $(poetry version -s) \
+            --name wave \
+            --deb-user pi \
+            --deb-group pi \
+            --maintainer "Alexander Jahn <s4005236@edu.dhsn.de>" \
+            .
+      - name: Upload Debian package
+        uses: actions/upload-artifact@v4
+        with:
+          name: wave-raspberry-pi-package
+          path: ./*.deb
