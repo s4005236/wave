@@ -39,11 +39,13 @@ After a sufficient number of developers approved the changes, the pull request c
 
 ## Merge Requests
 
-TODO
+Because of the branch protection rules described above, the only suitable way to push code into the default branch is through pull/merge requests. These are intertwined with a code review process. Thsi process is conducted so that
 
-### Review Process
+- the author of the pull/merge requests gets meaningful insight and feedback to their contribution
+- the code quality is protected through the fresh sets of eyes of the other developers
+- knowdlegdsf spreadin
 
-TODO
+
 
 ### Copilot Review
 
