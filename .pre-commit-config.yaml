@@ -1,4 +1,7 @@
 # configuration for pre-commit hooks utilizing isort and black
+default_language_version:
+  python: python3.11
+  
 repos:
   - repo: https://github.com/pycqa/isort
     rev: 6.0.1
@@ -6,11 +9,9 @@ repos:
       - id: isort
         name: isort (python)
         args: ["--profile", "black", "--filter-files"]
-        language_version: python3.12
   - repo: https://github.com/psf/black
     rev: 25.1.0
     hooks:
       - id: black
         name: black (python)
         pass_filenames: true
-        language_version: python3.12
