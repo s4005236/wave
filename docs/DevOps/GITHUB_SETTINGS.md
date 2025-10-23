@@ -45,7 +45,7 @@ TODO
 
 Thsi process is conducted so that
 
-- the author of the pull/merge requests gets meaningful insight and feedback to their contribution
+- the author of the pull requests gets meaningful insight and feedback to their contribution
 - the code quality is protected through the fresh sets of eyes of the other developers
 - knowdlegdsf spreadin
 
@@ -53,7 +53,7 @@ Thsi process is conducted so that
 
 ### Copilot Review
 
-TODO
+_to be configured_
 
 
 ---
