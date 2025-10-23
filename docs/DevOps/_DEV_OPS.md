@@ -29,6 +29,10 @@ The following DevOps topics are currently utilized in WAVE:
 
 - [Distribution, Releases, Versioning](DISTRIBUTION.md)
 
+---
+
+- [Educational Ressources](SOURCES.md)
+
 ## Graph Visualization
 
 TODO
