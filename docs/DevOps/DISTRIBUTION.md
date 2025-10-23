@@ -18,11 +18,11 @@ For further information on the GitHub Action workflow packaging this image, plea
 
 ### Docker Image
 
-_planned for future releases_
+_to be implemented_
 
 ### Build from source
 
-_planned for future releases_
+_to be documented_
 
 ## Versioning System
 

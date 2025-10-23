@@ -10,7 +10,7 @@ The current CI/CD setup for WAVE makes use out of the following implemented work
 
 > `pylint.yml`
 
-This workflow is triggered upon a pull/merge request from a development branch into the main branch.
+This workflow is triggered upon a pull request from a development branch into the main branch.
 
 It's purpose is to check the provided code from the development branch. If the code doesn't exceed the required score, the merge request is blocked until the code got refactored.
 
