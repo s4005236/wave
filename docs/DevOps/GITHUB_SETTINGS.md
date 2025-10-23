@@ -10,21 +10,24 @@ Alongside of this, pull request are the usual way, in which contributions start 
 
 ## Branch Protection
 
-TODO
+WAVE utilizes branch protection rules to protect the default branch `main`. This restricts users from pushing their code directly to this branch, enforcing the [code review](#code-review) routines described below.
+These rules also ensure, that the default branch shall be in a proper, working and clean state at all times because the branch serves as a starting point for all newly created branches. Code, that wasn't properly reviewed shall never be part of the default branch.
 
-## Pull Requests
+Of course those rules slow down the development process a bit. But they are essential, especially to open source repositories. When many different developers contribute to a project with all kinds of changes, branch protection rules are absolutely necessary.
 
-Because of the branch protection rules described above, the only suitable way to push code into the default branch is through pull requests. These are intertwined with a code review process.
+## Code Review
 
-TODO
+Because of the branch protection rules described above, the only suitable way to push code into the default branch is through pull requests. These are a essential part of the code review process.
 
-Thsi process is conducted so that
+After a developer is finished with the changes they worked on inside their branch they open a pull request. Then, there a few checks that must pass, before the changes are merged into the default branch.
 
-- the author of the pull requests gets meaningful insight and feedback to their contribution
-- the code quality is protected through the fresh sets of eyes of the other developers
-- knowdlegdsf spreadin
+- **Code Quality Check**: Before the code is ready to be merged, a code quality check is conducted. The [Pylint GitHub Action workflow](GITHUB_ACTIONS.md#pylint-workflow) fulfills this task. If the achieved score for the application with the additional changes is sufficient, the check passes.
 
+- **Conflict Checks**: GitHub automatically 
 
+- **Maintainer Review**: After the automatic checks, the pull request needs to be approved by a number of maintainers in order to be able to be merged in the default branch. The developers engage in a conversation which leaves room for discussion, feedback and criticism. The author of the pull request is able to defend their coding choices or has the opportunity to improve their made changes. After enough developers found the code to be approved, the changes are merged into the default branch. The 
+
+After a sufficient number of developers approved the changes, the pull request can be merged into the default branch. The branch, from which the changes were merged into main, is now no longer needed and is often deleted to keep the number of remote branches in the repository to a manageable amount.
 
 ### Copilot Review
 
