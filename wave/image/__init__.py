@@ -6,8 +6,8 @@ import tflite_runtime.interpreter as tflite  # note: code runner may not work pr
 from picamera2 import Picamera2
 
 # configuration
-FPS = 15
-frame_time = 1.0 / FPS  # time between two frames
+FPS = 20
+FRAME_TIME = 1.0 / FPS  # time between two frames
 
 picam = (
     Picamera2()
@@ -37,7 +37,7 @@ landmark_output_details = landmark_interpreter.get_output_details()
 while True:
     start = time.time()
     frame = picam.capture_array()
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    frame = cv2.cvtColor(frame, cv2.COLOR_BGRA2RGB)
 
     # --- Palm Detection ---
 
@@ -55,16 +55,16 @@ while True:
     # Channels: model may expect 1 or 3 channels
     if c_exp == 1:
         # convert to grayscale (single channel)
-        palm_img = cv2.cvtColor(palm_img, cv2.COLOR_BGR2GRAY)
+        print("[WARN] Model expects 1 channel — converting to grayscale.")
+        palm_img = cv2.cvtColor(palm_img, cv2.COLOR_RGB2GRAY)
         # make it H x W x 1
         palm_img = np.expand_dims(palm_img, axis=-1)
     elif c_exp == 3:
-        # model probably expects RGB order — many TFLite models expect RGB
-        # OpenCV returns BGR — convert to RGB for testing purposes
-        palm_img = cv2.cvtColor(palm_img, cv2.COLOR_BGR2RGB)
+        # already in 3 channel RGB format
+        pass
     else:
         raise ValueError(
-            f"unexpected amount of channels in the model: {c_exp}"
+            f"error: unexpected amount of channels in the model: {c_exp}"
         )
 
     # datatypes and normaliziation:
@@ -111,7 +111,7 @@ while True:
     # landmark_output = landmark_interpreter.get_tensor(landmark_output_details[0]['index'])
     # landmark_output -> 21 hand landmarks
 
-    cv2.imshow("wave - testing grayscale", gray)
+    cv2.imshow("wave - testing grayscale", frame)
 
     if cv2.waitKey(1) & 0xFF == ord(
         "q"
@@ -120,7 +120,7 @@ while True:
 
     elapsed = time.time() - start
     delay = max(
-        0, frame_time - elapsed
+        0, FRAME_TIME - elapsed
     )  # ensures positive numbers in case the loop needs more time than the fps cap
     time.sleep(delay)  # "dynamic" delay based on the runtime of the loop
 
