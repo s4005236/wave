@@ -1,24 +1,19 @@
 # Dependency Management
-This project uses [_poetry_](https://python-poetry.org/) for python packaging and dependency management. The root _pyproject.toml_ file is used to maintain dependencies.
-Additionally, the project uses pre-commit hooks for different tasks. These need to be activated in order to benefit from the functions.
 
-## Dev Dependency Setup
+## Development Setup
 
-At the project root:
+> See [README](/README.md) for documentation on how to setup for development with all needed dependencies.
 
-__Step 1:__ Create a virtual environment  ```.venv``` in your chosen directory.
+## Tools and Techniques
 
-__Step 2:__ Then run:
-```
-python setup_dev.py
-```
-This will call the setup script which sets up the project automatically.
+This project uses [_poetry_](https://python-poetry.org/) for python packaging and dependency management. The root _pyproject.toml_ file is used to maintain all dependencies needed for the application. 
 
-You're all set now!
-
----
+This file is also the central place to provide information about the app. Like name, version, licence etc. It also allows for grouping the dependencies (e.g. into group `dev`) to make managing them a lot easier.
 
 ## Useful poetry commands
+
+The list below provides an overview over frequently used poetry commands. For further information refer to the official [poetry documentation](https://python-poetry.org/docs/).
+
 - To update all dependencies, run:
 ```
 poetry update
@@ -37,3 +32,7 @@ poetry remove <package-name>
 ```
 poetry ... --dev <package-name>
 ```
+
+---
+
+> Back to [DevOps](./_DEV_OPS.md).
