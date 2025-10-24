@@ -50,3 +50,10 @@
 | **tflite_runtime** | 2.14.0 | Last ARM build working with Python 3.11 |
 
 ---
+
+### Setup
+
+- when developing oder running the code in a virtual environment, enable --system-site-packages when creating a venv
+- This step is important because picamera2 requires access to `libcamera` in order to use the Raspberry Pi Camera Module
+```python3 -m venv .venv --system-site-packages```
+- note: It's recommended to create the virtual environment in the `/wave/wave/image` directory when working with the code of the image processor module.
