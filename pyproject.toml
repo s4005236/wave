@@ -17,6 +17,12 @@ python = ">=3.11,<3.12"
 pyyaml = "^6.0.3"
 wheel = "^0.45.1"
 setuptools = "^80.9.0"
+fastapi = "^0.120.1"
+uvicorn = "^0.38.0"
+opencv-python = "<4.10"
+numpy = "<2"
+tflite-runtime = {version = "^2.14.0", markers = "sys_platform == 'linux'"}
+picamera2 = {version = "^0.3.31", markers = "sys_platform == 'linux'"}
 
 [tool.poetry.group.dev.dependencies]
 # development dependencies
