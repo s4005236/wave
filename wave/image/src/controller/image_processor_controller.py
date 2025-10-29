@@ -2,11 +2,12 @@ from wave.enums.bodyparts import Fingers
 from wave.enums.gesture_types import GestureTypes
 
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 api = FastAPI()
 
 
-class RequestModelGesture:
+class RequestModelGesture(BaseModel):
     """A request model representing a gesture."""
 
     id: str
@@ -24,24 +25,27 @@ class CoreController:
         pass
 
     @api.get("/")
-    async def root(self):
+    # pylint: disable=E0211, E0213
+    async def root():
         """
         A simple root endpoint that returns a hello world message.
         """
         return {"message": "Welcome to the Image Processor API"}
 
     @api.post("/connect")
-    async def connect(self, gesture_list: list[RequestModelGesture]):
+    # pylint: disable=E0213
+    async def connect(gesture_list: list[RequestModelGesture]):
         """
         Connect endpoint. Receives all necessary data from core. Starts the image processing.
         """
 
-        # TODO write list to store
+        print(gesture_list)
 
         return {"status": 200, "message": "Connected successfully"}
 
     @api.post("/disconnect")
-    async def disconnect(self, core_entity: str):
+    # pylint: disable=E0213
+    async def disconnect():
         """
         Disconnect endpoint. Stops the image processing.
         """
