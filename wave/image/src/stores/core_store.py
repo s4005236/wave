@@ -42,3 +42,6 @@ class CoreStore:
         for obj in self.core_registry_list:
             if obj.id == core_id:
                 self.core_registry_list.remove(obj)
+
+
+core_store = CoreStore()

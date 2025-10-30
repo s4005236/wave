@@ -1,11 +1,23 @@
+import json
 import logging
+from time import sleep
+from wave.constants.api_config import IP_API_BASE_URL
 from wave.models.dataclasses.gesture import Gesture
 from wave.models.enums.bodyparts import Fingers
 from wave.models.enums.gesture_types import GestureTypes
 
+import requests
 import yaml
+from pydantic import BaseModel
+from requests import Response
 
 log = logging.getLogger(__name__)
+
+
+class RequestModelGesture(BaseModel):
+    """A request model representing a gesture."""
+
+    gesture: Gesture
 
 
 class Core:
@@ -18,6 +30,7 @@ class Core:
         self.gestures: list[Gesture] = []
         self._gesture_ids: list = []
 
+        print("Loading config...")
         self.reload_config(file=config_file)
 
     def reload_config(self, file: str = "config.yml") -> None:
@@ -52,11 +65,29 @@ class Core:
         It also starts the run loop.
         """
 
-        # TODO call connect endpoints of IP and DM
+        response: Response = requests.get(f"{IP_API_BASE_URL}", timeout=30)
+
+        if response.status_code != 200:
+            raise ConnectionError(
+                f"Could not connect to Image Processor API. Status code: {response.status_code}"
+            )
+
+        request_model_gesture_list: list[RequestModelGesture] = [
+            RequestModelGesture(gesture=gesture) for gesture in self.gestures
+        ]
+        data_dict: dict[RequestModelGesture] = [
+            request_model_gesture.model_dump()
+            for request_model_gesture in request_model_gesture_list
+        ]
+
+        response = requests.post(
+            f"{IP_API_BASE_URL}/connect", json=data_dict, timeout=10
+        )
+
+        print(f"Response: {response.json().get('message', '')}")
 
         while True:
             pass
 
 
-if __name__ == "__main__":
-    core = Core()
+core = Core()

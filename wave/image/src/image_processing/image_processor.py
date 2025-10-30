@@ -1,7 +1,7 @@
+from time import sleep
+
 import cv2
 import numpy as np
-
-log = logging.getLogger(__name__)
 
 
 class ImageProcessor:
@@ -16,5 +16,10 @@ class ImageProcessor:
     def process(self):
         """Main image processing function."""
 
-        # TODO put code for image processing here
-        pass
+        while True:
+            print("Processing image...")
+
+            # TODO put code for image processing here
+
+            # TODO call core api to send gestures when detected
+            sleep(5)

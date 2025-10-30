@@ -14,7 +14,7 @@ class Gesture:
     power: int
     events: list[str]
     components: list[Fingers]
-    uuid: UUID = field(default_factory=uuid4)
+    # TODO uuid: UUID = field(default_factory=uuid4)
 
     def is_still(self):
         """Returns `True` if the gesture is of type STILL; `False` otherwise."""
