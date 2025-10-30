@@ -1,11 +1,13 @@
 from wave.models.dataclasses.gesture import Gesture
-from wave.models.enums.bodyparts import Fingers
-from wave.models.enums.gesture_types import GestureTypes
 
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-api = FastAPI()
+api = FastAPI(
+    title="Image Processor API",
+    description="API for the Image Processor module of the Wave project.",
+    version="0.0.1",
+)
 
 
 class RequestModelGesture(BaseModel):
@@ -16,7 +18,7 @@ class RequestModelGesture(BaseModel):
 
 class ImageController:
     """
-    Main api endpoint controller for the image processor.
+    Main api endpoint controller for the image processor module.
     """
 
     def __init__(self):
@@ -26,7 +28,7 @@ class ImageController:
     # pylint: disable=E0211, E0213
     async def root():
         """
-        A simple root endpoint that returns a hello world message.
+        A simple root endpoint that returns a welcome message.
         """
         return {"message": "Welcome to the Image Processor API"}
 
