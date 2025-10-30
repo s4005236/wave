@@ -51,6 +51,7 @@ class Core:
         Makes a connection to the IP and DM and sends the relevant data.
         It also starts the run loop.
         """
+        print("Starting Core...")
         # This currently is only a stub to mark what is to come
         # TODO This function should make a connection to the IP and DM and send
         # the relevant data
