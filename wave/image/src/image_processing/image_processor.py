@@ -16,7 +16,9 @@ class ImageProcessor:
     def process(self):
         """Main image processing function."""
 
-        while True:
+        run_image_processing = True
+
+        while run_image_processing:
             print("Processing image...")
 
             # TODO put code for image processing here
