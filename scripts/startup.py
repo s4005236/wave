@@ -1,7 +1,6 @@
 import threading
-from time import sleep
-from wave.core.src.core import Core
-from wave.image.src.controller.image_controller import ImageController
+from wave.constants.api_config import API_BASE_URL, CORE_API_PORT, IP_API_PORT
+from wave.core.src.core import core
 
 import uvicorn
 
@@ -23,7 +22,7 @@ def start() -> None:
 
     print("Startup complete. Main thread entering main function on Core.")
 
-    Core.main(Core)
+    core.main()
 
     print("Application exited cleanly.")
 
@@ -34,8 +33,8 @@ def start_core_api() -> None:
     """
     uvicorn.run(
         "wave.core.src.controller.core_controller:api",
-        host="127.0.0.1",
-        port=4710,
+        host=API_BASE_URL,
+        port=CORE_API_PORT,
     )
 
 
@@ -45,6 +44,6 @@ def start_image_processor_api() -> None:
     """
     uvicorn.run(
         "wave.image.src.controller.image_controller:api",
-        host="127.0.0.1",
-        port=4711,
+        host=API_BASE_URL,
+        port=IP_API_PORT,
     )
