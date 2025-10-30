@@ -1,5 +1,5 @@
 import threading
-from wave.constants.api_config import API_BASE_URL, CORE_API_PORT, IP_API_PORT
+from wave.constants.api_config import API_HOST_URL, CORE_API_PORT, IP_API_PORT
 from wave.core.src.core import core
 
 import uvicorn
@@ -33,7 +33,7 @@ def start_core_api() -> None:
     """
     uvicorn.run(
         "wave.core.src.controller.core_controller:api",
-        host=API_BASE_URL,
+        host=API_HOST_URL,
         port=CORE_API_PORT,
     )
 
@@ -44,6 +44,6 @@ def start_image_processor_api() -> None:
     """
     uvicorn.run(
         "wave.image.src.controller.image_controller:api",
-        host=API_BASE_URL,
+        host=API_HOST_URL,
         port=IP_API_PORT,
     )
