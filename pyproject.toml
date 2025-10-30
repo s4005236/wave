@@ -33,6 +33,9 @@ black = "^25.1.0"
 isort = "^6.0.1"
 tomlkit = "^0.13.2"
 
+[tool.poetry.scripts]
+dev = "startup:start"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
