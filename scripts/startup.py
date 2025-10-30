@@ -12,7 +12,6 @@ def start() -> None:
     Usually called through a poetry script command.
     """
     print("Starting Core...")
-    Core.start(Core)
 
     print("Starting Core API...")
     core_thread = threading.Thread(target=start_core_api, daemon=True)
@@ -22,23 +21,22 @@ def start() -> None:
     ip_thread = threading.Thread(target=start_image_processor_api, daemon=True)
     ip_thread.start()
 
-    print("Application started successfully.")
+    print("Startup complete. Main thread entering main function on Core.")
 
-    while True:
-        pass
+    Core.main(Core)
 
-    # print("Application exited...")
+    print("Application exited cleanly.")
 
 
 def start_core_api() -> None:
     """
     Starts the core API.
     """
-    # TODO enable
-    while True:
-        print("Core running...")
-        sleep(30)
-    # uvicorn.run("wave.core.src.controller.core_controller:api", host="127.0.0.1", port=4711)
+    uvicorn.run(
+        "wave.core.src.controller.core_controller:api",
+        host="127.0.0.1",
+        port=4710,
+    )
 
 
 def start_image_processor_api() -> None:
@@ -48,5 +46,5 @@ def start_image_processor_api() -> None:
     uvicorn.run(
         "wave.image.src.controller.image_controller:api",
         host="127.0.0.1",
-        port=4712,
+        port=4711,
     )

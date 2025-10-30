@@ -46,20 +46,16 @@ class Core:
                     )
                 )
 
-    def start(self) -> None:
+    def main(self) -> None:
         """
         Makes a connection to the IP and DM and sends the relevant data.
         It also starts the run loop.
         """
-        print("Starting Core...")
 
-        # TODO startup Core REST API, call connect endpoint of IP, call connect endpoint of DM, then wait for IP data
+        # TODO call connect endpoints of IP and DM
 
-        # This currently is only a stub to mark what is to come
-        # TODO This function should make a connection to the IP and DM and send
-        # the relevant data
-        # It also starts a run loop
-        pass
+        while True:
+            pass
 
 
 if __name__ == "__main__":
