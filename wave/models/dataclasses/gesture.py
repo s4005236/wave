@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from uuid import UUID, uuid4
-from wave.enums.bodyparts import Fingers
-from wave.enums.gesture_types import GestureTypes
+from wave.models.enums.bodyparts import Fingers
+from wave.models.enums.gesture_types import GestureTypes
 
 
 @dataclass

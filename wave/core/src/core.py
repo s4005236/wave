@@ -1,7 +1,7 @@
 import logging
-from wave.core.src.gesture import Gesture
-from wave.enums.bodyparts import Fingers
-from wave.enums.gesture_types import GestureTypes
+from wave.models.dataclasses.gesture import Gesture
+from wave.models.enums.bodyparts import Fingers
+from wave.models.enums.gesture_types import GestureTypes
 
 import yaml
 
@@ -52,6 +52,9 @@ class Core:
         It also starts the run loop.
         """
         print("Starting Core...")
+
+        # TODO startup Core REST API, call connect endpoint of IP, call connect endpoint of DM, then wait for IP data
+
         # This currently is only a stub to mark what is to come
         # TODO This function should make a connection to the IP and DM and send
         # the relevant data
