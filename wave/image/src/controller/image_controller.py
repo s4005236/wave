@@ -1,5 +1,6 @@
-from wave.enums.bodyparts import Fingers
-from wave.enums.gesture_types import GestureTypes
+from wave.models.dataclasses.gesture import Gesture
+from wave.models.enums.bodyparts import Fingers
+from wave.models.enums.gesture_types import GestureTypes
 
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -10,13 +11,10 @@ api = FastAPI()
 class RequestModelGesture(BaseModel):
     """A request model representing a gesture."""
 
-    id: str
-    type: GestureTypes
-    components: list[Fingers]
-    event: str
+    gesture: Gesture
 
 
-class CoreController:
+class ImageController:
     """
     Main api endpoint controller for the image processor.
     """
