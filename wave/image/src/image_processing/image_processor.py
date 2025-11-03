@@ -1,4 +1,6 @@
 from time import sleep
+from wave.image.src.stores.gesture_store import gesture_store
+from wave.models.dataclasses.gesture import Gesture
 
 import cv2
 import numpy as np
@@ -21,7 +23,18 @@ class ImageProcessor:
         while run_image_processing:
             print("Processing image...")
 
+            gestures: list[Gesture] = gesture_store.get_gestures()
+
+            print(f"Detected {len(gestures)} gesture(s).")
+
+            for gesture in gestures or []:
+                print(f"Gesture {gesture.id}:")
+                print(f"    Name: {gesture.name}")
+                print(f"    Components: {gesture.components}")
+                print(f"    Events: {gesture.events}")
+                print("----------------")
+
             # TODO put code for image processing here
 
             # TODO call core api to send gestures when detected
-            sleep(5)
+            sleep(60)
