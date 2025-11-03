@@ -15,7 +15,7 @@ log = logging.getLogger(__name__)
 
 
 class RequestModelGesture(BaseModel):
-    """A request model representing a gesture."""
+    """A request model wrapping a gesture. Used for Rest API calls."""
 
     gesture: Gesture
 
@@ -84,7 +84,14 @@ class Core:
             f"{IP_API_BASE_URL}/connect", json=data_dict, timeout=10
         )
 
-        print(f"Response: {response.json().get('message', '')}")
+        if response.status_code != 200:
+            print(
+                f"Error {response.status_code}: {response.json().get('detail', 'No detail provided')}"
+            )
+            return
+
+        if response.status_code == 200:
+            print(f"Response: {response.json().get('message', '')}")
 
         while True:
             pass

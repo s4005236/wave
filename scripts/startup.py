@@ -24,7 +24,7 @@ def start() -> None:
 
     core.main()
 
-    print("Application exited cleanly.")
+    print("Application exited.")
 
 
 def start_core_api() -> None:

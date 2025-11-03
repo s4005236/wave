@@ -36,5 +36,4 @@ class ImageProcessor:
 
             # TODO put code for image processing here
 
-            # TODO call core api to send gestures when detected
             sleep(60)
