@@ -36,4 +36,6 @@ class ImageProcessor:
 
             # TODO put code for image processing here
 
+            # TODO call Core module api with detected gesture
+
             sleep(60)
