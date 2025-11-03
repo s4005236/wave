@@ -1,7 +1,9 @@
 import asyncio
 import logging
 import threading
+from collections.abc import AsyncIterable, Iterable
 from wave.image.src.image_processing.image_processor import ImageProcessor
+from wave.image.src.stores.core_store import core_store
 from wave.image.src.stores.gesture_store import gesture_store
 from wave.models.dataclasses.gesture import Gesture
 
@@ -18,7 +20,7 @@ api = FastAPI(
 
 
 class RequestModelGesture(BaseModel):
-    """A request model representing a gesture."""
+    """A request model wrapping a gesture. Used for Rest API calls."""
 
     gesture: Gesture
 
@@ -46,8 +48,15 @@ class ImageController:
         Connect endpoint. Receives all necessary data from core. Starts the image processing.
         """
 
+        if not isinstance(request_model_gesture_list, Iterable):
+            raise HTTPException(
+                status_code=500,
+                detail="Internal Server Error: Provided list of gestures is not an instance of iterable.",
+            )
+
         gesture_list: list[Gesture] = [
             request_gesture.gesture
+            # pylint: disable=E1133, check above that list isinstance Iterable
             for request_gesture in request_model_gesture_list
         ]
 
@@ -61,6 +70,8 @@ class ImageController:
         print("Starting Image Processor API...")
         thread = threading.Thread(target=ImageProcessor().process, daemon=True)
         thread.start()
+
+        core_store.register_core_connected()
 
         return {
             "status": 200,
