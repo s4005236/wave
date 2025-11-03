@@ -13,12 +13,12 @@ class GestureStore:
         """
         Takes a list of gestures and stores them in the store.
         """
-        self.gestures.append(gesture_list)
+        self.gestures = self.gestures + gesture_list
         print(f"Successfully stored {len(self.gestures)} gesture(s).")
 
     def get_gestures(self) -> list[Gesture] | None:
         """
-        Retrieves a gesture by its id. If no gestures are stored, returns None.
+        Retrieves all stored gestures. If no gestures are stored, returns None.
         """
         if len(self.gestures) > 0:
             return self.gestures
