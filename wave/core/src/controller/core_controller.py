@@ -26,7 +26,7 @@ class CoreController:
         pass
 
     @api.get("/")
-    # pylint: disable=E0211, E0213
+    # pylint: disable=E0213
     async def root():
         """
         A simple root endpoint that returns a welcome message.
