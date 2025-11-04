@@ -1,7 +1,5 @@
-import asyncio
-import logging
 import threading
-from collections.abc import AsyncIterable, Iterable
+from collections.abc import Iterable
 from wave.image.src.image_processing.image_processor import ImageProcessor
 from wave.image.src.stores.core_store import core_store
 from wave.image.src.stores.gesture_store import gesture_store
@@ -9,8 +7,6 @@ from wave.models.dataclasses.gesture import Gesture
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-
-log = logging.getLogger(__name__)
 
 api = FastAPI(
     title="Image Processor API",
@@ -45,18 +41,21 @@ class ImageController:
     # pylint: disable=E0213
     async def connect(request_model_gesture_list: list[RequestModelGesture]):
         """
-        Connect endpoint. Receives all necessary data from core. Starts the image processing.
+        Connect endpoint. Receives all necessary data from core.
+        Starts the image processing.
         """
 
         if not isinstance(request_model_gesture_list, Iterable):
             raise HTTPException(
                 status_code=500,
-                detail="Internal Server Error: Provided list of gestures is not an instance of iterable.",
+                detail="Internal Server Error: "
+                "Provided list of gestures is "
+                "not an instance of iterable.",
             )
-
         gesture_list: list[Gesture] = [
             request_gesture.gesture
-            # pylint: disable=E1133, check above that list isinstance Iterable
+            # pylint: disable=E1133
+            # check above that list isinstance Iterable
             for request_gesture in request_model_gesture_list
         ]
 
@@ -75,7 +74,8 @@ class ImageController:
 
         return {
             "status": 200,
-            "message": "Successfully connected. All Gestures stored correctly.",
+            "message": "Successfully connected. "
+            "All Gestures stored correctly.",
         }
 
     @api.post("/disconnect")
@@ -85,4 +85,4 @@ class ImageController:
         Disconnect endpoint. Stops the image processing.
         """
         # TODO disconnect logic
-        pass
+        return {"status": 500, "message": "not yet implemented"}

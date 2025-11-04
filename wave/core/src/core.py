@@ -1,6 +1,4 @@
-import json
 import logging
-from time import sleep
 from wave.constants.api_config import IP_API_BASE_URL
 from wave.models.dataclasses.gesture import Gesture
 from wave.models.enums.bodyparts import Fingers
@@ -43,21 +41,21 @@ class Core:
             if gesture_id in self._gesture_ids:
                 log.warning("%s already existing; ignoring", gesture_id)
                 continue
-            else:
-                self._gesture_ids.append(gesture_id)
-                self.gestures.append(
-                    Gesture(
-                        gesture_id,
-                        gesture["name"],
-                        type=GestureTypes(gesture["type"].lower()),
-                        power=int(gesture["power"]),
-                        events=gesture["events"],
-                        components=[
-                            Fingers(finger.lower())
-                            for finger in gesture["components"]
-                        ],
-                    )
+
+            self._gesture_ids.append(gesture_id)
+            self.gestures.append(
+                Gesture(
+                    gesture_id,
+                    gesture["name"],
+                    type=GestureTypes(gesture["type"].lower()),
+                    power=int(gesture["power"]),
+                    events=gesture["events"],
+                    components=[
+                        Fingers(finger.lower())
+                        for finger in gesture["components"]
+                    ],
                 )
+            )
 
     def main(self) -> None:
         """
@@ -69,7 +67,8 @@ class Core:
 
         if response.status_code != 200:
             raise ConnectionError(
-                f"Could not connect to Image Processor API. Status code: {response.status_code}"
+                f"Could not connect to Image Processor API. "
+                f"Status code: {response.status_code}"
             )
 
         request_model_gesture_list: list[RequestModelGesture] = [
@@ -86,7 +85,8 @@ class Core:
 
         if response.status_code != 200:
             print(
-                f"Error {response.status_code}: {response.json().get('detail', 'No detail provided')}"
+                f"Error {response.status_code}: "
+                f"{response.json().get('detail','No detail provided')}"
             )
             return
 

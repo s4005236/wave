@@ -5,6 +5,11 @@ log = logging.getLogger(__name__)
 
 
 class ConnectionStates(StrEnum):
+    """
+    Enum defining all valid states for a connection from the Image Processor
+    to a Core module instance.
+    """
+
     CONNECTED = auto()
     DISCONNECTED = auto()
 
