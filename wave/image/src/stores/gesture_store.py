@@ -28,9 +28,10 @@ class GestureStore:
         """
         Retrieves a gesture by its id.
         """
+
         # TODO: Implement retrieval logic
+
         print(f"get gesture with id {gesture_id}, not yet implemented.")
-        return None
 
     def clear_gestures(self) -> None:
         """

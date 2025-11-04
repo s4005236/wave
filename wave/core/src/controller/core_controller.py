@@ -1,5 +1,4 @@
 from wave.models.dataclasses.gesture import Gesture
-from wave.models.enums.gesture_types import GestureTypes
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
@@ -37,16 +36,19 @@ class CoreController:
     # pylint: disable=E0213
     async def connect(request_model_gesture: RequestModelGesture):
         """
-        Connect endpoint. Receives a gesture from the Image Processor module. Sends the events of the received gesture to the Device Manager.
+        Connect endpoint. Receives a gesture from the Image Processor module.
+        Sends the events of the received gesture to the Device Manager.
         """
 
         if not isinstance(request_model_gesture, RequestModelGesture):
             raise HTTPException(
                 status_code=500,
-                detail="Internal Server Error: Provided gesture is not an instance of RequestModelGesture.",
+                detail="Internal Server Error: "
+                "Provided gesture is not an instance of RequestModelGesture.",
             )
 
-        # pylint: disable=E1101, check that request_model contains member 'gesture'
+        # pylint: disable=E1101
+        # check that request_model contains member 'gesture'
         if request_model_gesture.gesture is None:
             raise HTTPException(
                 status_code=400,
@@ -61,12 +63,14 @@ class CoreController:
             )
 
         print(
-            f"Core: Trigger events {detected_gesture.events} for gesture {detected_gesture.name}"
+            f"Core: Trigger events {detected_gesture.events} "
+            f"for gesture {detected_gesture.name}"
         )
 
         # TODO send to DM
 
         return {
             "status": 200,
-            "message": "Successfully connected. All Gestures stored correctly.",
+            "message": "Successfully connected. "
+            "All Gestures stored correctly.",
         }

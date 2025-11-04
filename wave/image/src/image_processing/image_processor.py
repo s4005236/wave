@@ -2,9 +2,6 @@ from time import sleep
 from wave.image.src.stores.gesture_store import gesture_store
 from wave.models.dataclasses.gesture import Gesture
 
-import cv2
-import numpy as np
-
 
 class ImageProcessor:
     """

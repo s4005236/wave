@@ -1,5 +1,6 @@
-from dataclasses import dataclass, field
-from uuid import UUID, uuid4
+from dataclasses import dataclass  # , field
+
+# from uuid import UUID, uuid4
 from wave.models.enums.bodyparts import Fingers
 from wave.models.enums.gesture_types import GestureTypes
 
@@ -17,5 +18,8 @@ class Gesture:
     # TODO uuid: UUID = field(default_factory=uuid4)
 
     def is_still(self):
-        """Returns `True` if the gesture is of type STILL; `False` otherwise."""
+        """
+        Returns `True` if the gesture is of type STILL;
+        `False` otherwise.
+        """
         return self.type == GestureTypes.STILL
