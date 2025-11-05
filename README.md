@@ -39,7 +39,7 @@ poetry run wave
 
 
 ## Documentation Ressources
-For further  technical documentation, please consult the following documents:
+For further technical documentation, please consult the following documents:
 
 - Module Documentation
     - Core Documentation: [open](/docs/Core/_CORE.md)
