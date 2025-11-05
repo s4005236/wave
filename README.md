@@ -32,7 +32,7 @@ python setup_dev.py
 
 __All done setting up!__
 
-__Step 3: Start the application by running:
+__Step 3:__ Start the application by running:
 ```
 poetry run wave
 ```
