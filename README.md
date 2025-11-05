@@ -20,7 +20,7 @@ For more information on how to use WAVE, please refer to our [User Guide](/docs/
 
 # Development and Contributing
 
-## Development Setup
+## Development Setup & Start
 At the project root:
 
 __Step 1:__ Create a virtual environment  `.venv`.
@@ -30,7 +30,12 @@ __Step 2:__ Then run:
 python setup_dev.py
 ```
 
-__All done!__
+__All done setting up!__
+
+__Step 3: Start the application by running:
+```
+poetry run wave
+```
 
 
 ## Documentation Ressources

@@ -43,6 +43,7 @@ def main():
         run("poetry update")
         run("pip install poetry")
         run("pre-commit install")
+        run("poetry install")
     else:
         print("WARNING: No virtual environment '.venv'. Canceling auto-setup.")
 

@@ -1,11 +1,21 @@
 import logging
-from wave.core.src.gesture import Gesture
-from wave.enums.bodyparts import Fingers
-from wave.enums.gesture_types import GestureTypes
+from wave.constants.api_config import IP_API_BASE_URL
+from wave.models.dataclasses.gesture import Gesture
+from wave.models.enums.bodyparts import Fingers
+from wave.models.enums.gesture_types import GestureTypes
 
+import requests
 import yaml
+from pydantic import BaseModel
+from requests import Response
 
 log = logging.getLogger(__name__)
+
+
+class RequestModelGesture(BaseModel):
+    """A request model wrapping a gesture. Used for Rest API calls."""
+
+    gesture: Gesture
 
 
 class Core:
@@ -18,6 +28,7 @@ class Core:
         self.gestures: list[Gesture] = []
         self._gesture_ids: list = []
 
+        print("Loading config...")
         self.reload_config(file=config_file)
 
     def reload_config(self, file: str = "config.yml") -> None:
@@ -30,33 +41,60 @@ class Core:
             if gesture_id in self._gesture_ids:
                 log.warning("%s already existing; ignoring", gesture_id)
                 continue
-            else:
-                self._gesture_ids.append(gesture_id)
-                self.gestures.append(
-                    Gesture(
-                        gesture_id,
-                        gesture["name"],
-                        type=GestureTypes(gesture["type"].lower()),
-                        power=int(gesture["power"]),
-                        events=gesture["events"],
-                        components=[
-                            Fingers(finger.lower())
-                            for finger in gesture["components"]
-                        ],
-                    )
-                )
 
-    def start(self) -> None:
+            self._gesture_ids.append(gesture_id)
+            self.gestures.append(
+                Gesture(
+                    gesture_id,
+                    gesture["name"],
+                    type=GestureTypes(gesture["type"].lower()),
+                    power=int(gesture["power"]),
+                    events=gesture["events"],
+                    components=[
+                        Fingers(finger.lower())
+                        for finger in gesture["components"]
+                    ],
+                )
+            )
+
+    def main(self) -> None:
         """
         Makes a connection to the IP and DM and sends the relevant data.
         It also starts the run loop.
         """
-        # This currently is only a stub to mark what is to come
-        # TODO This function should make a connection to the IP and DM and send
-        # the relevant data
-        # It also starts a run loop
-        pass
+
+        response: Response = requests.get(f"{IP_API_BASE_URL}", timeout=30)
+
+        if response.status_code != 200:
+            raise ConnectionError(
+                f"Could not connect to Image Processor API. "
+                f"Status code: {response.status_code}"
+            )
+
+        request_model_gesture_list: list[RequestModelGesture] = [
+            RequestModelGesture(gesture=gesture) for gesture in self.gestures
+        ]
+        data_dict: dict[RequestModelGesture] = [
+            request_model_gesture.model_dump()
+            for request_model_gesture in request_model_gesture_list
+        ]
+
+        response = requests.post(
+            f"{IP_API_BASE_URL}/connect", json=data_dict, timeout=10
+        )
+
+        if response.status_code != 200:
+            print(
+                f"Error {response.status_code}: "
+                f"{response.json().get('detail','No detail provided')}"
+            )
+            return
+
+        if response.status_code == 200:
+            print(f"Response: {response.json().get('message', '')}")
+
+        while True:
+            pass
 
 
-if __name__ == "__main__":
-    core = Core()
+core = Core()
