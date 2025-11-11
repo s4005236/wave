@@ -19,6 +19,8 @@ The following DevOps topics are currently utilized in WAVE:
 
 - [Dependency Management](DEPENDENCY_MANAGEMENT.md)
 
+- [App Startup Routine](APP_STARTUP.md)
+
 - [Hard- & Software Requirements](REQUIREMENTS.md)
 
 - GitHub
