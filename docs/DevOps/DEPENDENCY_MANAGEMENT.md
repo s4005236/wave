@@ -6,7 +6,7 @@
 
 ## Tools and Techniques
 
-This project uses [_poetry_](https://python-poetry.org/) for python packaging and dependency management. The root _pyproject.toml_ file is used to maintain all dependencies needed for the application. 
+This project uses [_poetry_](https://python-poetry.org/) for python packaging and dependency management. The root `pyproject.toml` file is used to maintain all dependencies needed for the application. 
 
 This file is also the central place to provide information about the app. Like name, version, licence etc. It also allows for grouping the dependencies (e.g. into group `dev`) to make managing them a lot easier.
 
