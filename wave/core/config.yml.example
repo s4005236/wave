@@ -3,14 +3,15 @@
 ##########################
 # Gestures               #
 ##########################
+# sent to Image Processor for gesture detection
 gestures:
   - id: "wave:lpeace"
     name: "Left Peace"
     type: "STILL"
     power: 0
     events:
-      - light_on
-      - door_open
+      - "wave:green_light_on"
+      - "wave:door_open"
     components:
       - LMIDDLE
       - LINDEX
@@ -19,7 +20,90 @@ gestures:
     type: "STILL"
     power: 10
     events:
-      - music_off
-      - close_windows
+      - "wave:music_off"
+      - "wave:red_light_off"
     components:
       - RTHUMB
+
+##########################
+# Events                 #
+##########################
+# used by Core as connection between Image Processor and Device Manager
+events:
+  - id: "wave:green_light_on"
+    name: "Green Light On"
+    device:
+      - id: "wave:green_light"
+        aspect: "brightness"
+        modifier: 0
+  - id: "wave:red_light_off"
+    name: "Red Light Off"
+    device:
+      - id: "wave:red_light"
+        aspect: "brightness"
+        modifier: 0
+
+  - id: "wave:music_off"
+    name: "Music Off"
+    device:
+      - id: "wave:radio"
+        aspect: "state"
+        modifier: "stop"
+
+  - id: "wave:door_open"
+    name: "Open Door"
+    device:
+      - id: "wave:door"
+        aspect: "state"
+        modifier: "open"
+
+##########################
+# Devices                #
+##########################
+# sent to Device Manager to check for all connected devices and overlook all possible actions
+devices:
+  - id: "wave:red_light"
+    name: "Red Light"
+    type: "LIGHT"
+    aspects:
+      - state:
+          modifiers:
+            - on
+            - off
+      - brightness:
+          value:
+            - low
+            - medium
+            - high
+  - id: "wave:green_light"
+    name: "Green Light"
+    type: "LIGHT"
+    aspects:
+      - state:
+          modifiers:
+            - on
+            - off
+      - brightness:
+          value:
+            - low
+            - medium
+            - high
+
+  - id: "wave:radio"
+    name: "Radio"
+    type: "MUSIC_PLAYER"
+    aspects:
+      - state:
+          modifiers:
+            - play
+            - pause
+            - stop
+
+  - id: "wave:door"
+    name: "Door"
+    type: "ENTRY_SYSTEM"
+    aspects:
+      - state:
+          modifiers:
+            - open
+            - close

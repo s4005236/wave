@@ -56,6 +56,13 @@ class Core:
                     ],
                 )
             )
+        for event in raw_config["events"]:
+            # TODO handle event loading
+            log.debug("Loaded event: %s", event)
+
+        for device in raw_config["devices"]:
+            # TODO handle device loading
+            log.debug("Loaded event: %s", device)
 
     def main(self) -> None:
         """
