@@ -43,27 +43,19 @@ class ImageProcessor:
             FPS = 20
             FRAME_TIME = 1.0 / FPS  # time between two frames
 
-            picam = (
-                Picamera2()
-            )  # is needed to use Raspberry Pi Cameras that are connected via CSI Interface
-            picam.configure(
-                picam.create_preview_configuration(main={"size": (640, 480)})
-            )  # heighth and width of the videostream
+            picam = (Picamera2())  # is needed to use Raspberry Pi Cameras that are connected via CSI Interface
+            picam.configure(picam.create_preview_configuration(main={"size": (640, 480)}))  # heighth and width of the videostream
             picam.start()
             time.sleep(1)
 
             # loads palm detection
-            palm_interpreter = tflite.Interpreter(
-                model_path="/home/wave/Projekte/wave/wave/image/models/palm_detection_without_custom_layer.tflite"
-            )
+            palm_interpreter = tflite.Interpreter(model_path="/home/wave/Projekte/wave/wave/image/models/palm_detection_without_custom_layer.tflite")
             palm_interpreter.allocate_tensors()
             palm_input_details = palm_interpreter.get_input_details()
             palm_output_details = palm_interpreter.get_output_details()
 
             # loads hand landmark
-            landmark_interpreter = tflite.Interpreter(
-                model_path="/home/wave/Projekte/wave/wave/image/models/hand_landmark_lite.tflite"
-            )
+            landmark_interpreter = tflite.Interpreter(model_path="/home/wave/Projekte/wave/wave/image/models/hand_landmark_lite.tflite")
             landmark_interpreter.allocate_tensors()
             landmark_input_details = landmark_interpreter.get_input_details()
             landmark_output_details = landmark_interpreter.get_output_details()
@@ -77,9 +69,7 @@ class ImageProcessor:
 
                 # Debug: show expected input details
                 expected_shape = palm_input_details[0]["shape"]  # e.g. [1, 256, 256, 3]
-                expected_dtype = palm_input_details[0][
-                    "dtype"
-                ]  # e.g.. <class 'numpy.uint8'> or np.float32
+                expected_dtype = palm_input_details[0]["dtype"]  # e.g.. <class 'numpy.uint8'> or np.float32
                 # expected_shape is a numpy array; convert to python ints
                 b, h_exp, w_exp, c_exp = map(int, expected_shape)
 
@@ -97,9 +87,7 @@ class ImageProcessor:
                     # already in 3 channel RGB format
                     pass
                 else:
-                    raise ValueError(
-                        f"error: unexpected amount of channels in the model: {c_exp}"
-                    )
+                    raise ValueError(f"error: unexpected amount of channels in the model: {c_exp}")
 
                 # datatypes and normaliziation:
                 # some models expect uint8 (0..255), others float32 (0..1 or -1..1)
@@ -107,22 +95,16 @@ class ImageProcessor:
                     palm_input = np.expand_dims(palm_img.astype(np.uint8), axis=0)
                 else:
                     # float models: mostly 0..1 -> divide by 255
-                    palm_input = np.expand_dims(
-                        palm_img.astype(np.float32) / 255.0, axis=0
-                    )
+                    palm_input = np.expand_dims(palm_img.astype(np.float32) / 255.0, axis=0)
 
                 # output for debugging amd troubleshooting
                 print("Model expects shape:", expected_shape, "dtype:", expected_dtype)
-                print(
-                    "Prepared input shape:", palm_input.shape, "dtype:", palm_input.dtype
-                )
+                print("Prepared input shape:", palm_input.shape, "dtype:", palm_input.dtype)
 
                 # safety check before set_tensor
                 if palm_input.shape != tuple(expected_shape.tolist()):
                     # ouput error if dtype- or shape mismatch
-                    raise ValueError(
-                        f"Input shape does not match model: prepared={palm_input.shape} expected={tuple(expected_shape.tolist())}"
-                    )
+                    raise ValueError(f"Input shape does not match model: prepared={palm_input.shape} expected={tuple(expected_shape.tolist())}")
 
                 # writes frame into model entry
                 palm_interpreter.set_tensor(palm_input_details[0]["index"], palm_input)
@@ -147,20 +129,15 @@ class ImageProcessor:
 
                 cv2.imshow("wave - testing grayscale", frame)
 
-                if cv2.waitKey(1) & 0xFF == ord(
-                    "q"
-                ):  # returns ASCII-Code of the given Key; 0xFF ensures that only the last 8 bits of the actual key are being used
+                if cv2.waitKey(1) & 0xFF == ord("q"):  # returns ASCII-Code of the given Key; 0xFF ensures that only the last 8 bits of the actual key are being used
                     break
 
                 elapsed = time.time() - start
-                delay = max(
-                    0, FRAME_TIME - elapsed
-                )  # ensures positive numbers in case the loop needs more time than the fps cap
+                delay = max(0, FRAME_TIME - elapsed)  # ensures positive numbers in case the loop needs more time than the fps cap
                 time.sleep(delay)  # "dynamic" delay based on the runtime of the loop
 
             picam.close()
             cv2.destroyAllWindows()
-
 
             # TODO call Core module api with detected gesture
 
