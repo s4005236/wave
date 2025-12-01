@@ -29,7 +29,13 @@ This project uses _pre-commit_ hooks for different tasks. They are automatically
 
 Pre-commit hooks provide the opportunity to run certain tools the moment a developer conducts a new commit to their local git branch. This is especially useful to enforce code quality standards and stylings as early as possible, right before the code even enters the version control system.
 
-The following tools are triggered by an respective pre-commit hook. Further detail on the configuration can be found in the _pre-commit-config.yaml_ file at root.
+**How does this work?**
+
+This works, because Git supports different "hooks", which are scripts linked to events of the repository. Aside from "pre-commit", there are various other possible hooks like "pre-rebase", "pre-push" and many more. When the event, that is connected to the respective script takes place, the script is executed.
+
+Utilizing a pre-commit hook, the configured script gets executed everytime before a commit is done to the local git branch of a developer. This script is often used to run tools for enforcing code quality standards and stylings on the staged changes, right before they enter the version control system.
+
+The following tool executions are triggered by the pre-commit hook. Further detail on the configuration can be found in the _pre-commit-config.yaml_ file at root.
 
 - **Black**: A code formatter for Python that enforces PEP8 by automatically reformatting code. If formatting issues are found, Black modifies the affected files.
 When this happens, the commit fails and the changes made by black must be staged to retry the commit.
