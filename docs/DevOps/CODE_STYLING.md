@@ -3,6 +3,17 @@
 ## Coding Standards
 This project follows the [PEP8](https://peps.python.org/pep-0008/) style guide for Python. All contributions must adhere to this standard.
 
+**Why is this necessary?**
+
+> Following a defined style guide gives the developers clarity in their work.
+
+Each developer has different opinions on what is considered "clean code". This is due to different technical experiences, view points or simply personal taste.
+Different opinions on the matters at hand are welcome, but the decisions emerging need to be clearly defined. If not, meaningful cooperation between different team members is at risk of getting slow and tidious.
+
+Simply put: Code that is easily traversable for Person A can proove quite the challenge for Person B, having a different notion on what the code in front of them probably does. This slows down development, because Person B has to "rethink" what the other person had been thinking when writing their logic.
+
+To avoid unnecessary questions and general confusion, a style guide is used. Each developer has to back down on their personal believes in order to benefit when reviewing the code of the others. Enforcing a style guide also avoids code smells, potential bugs and design issues, which would mean additional work for the team.
+
 ## Tools
 To ensure compliance with the PEP8 standard, the following tools are used in this project.
 
@@ -24,7 +35,8 @@ When this happens, the commit fails and the changes made by black must be staged
 When this happens, the commit fails and the changes made by isort must be staged to retry the commit.
 
 ### GitHub Actions
-- **Pylint**: Runs as an action when and rates the code from 0 to 10. A score of 10 means the code fully follows the style rules. The pipeline fails if the score is below 8.0.
+- **Pylint**: Runs and rates the code on a scale from 0 to 10. A score of 10 means the code fully follows the style rules. The pipeline used within this project fails if the score is below `8.0`.
+If the code reaches this measure, the code is generally considered to be of decent quality. This way, bigger problems in the code, which slow down development in the long run, can be avoided successfully. On the other hand, this score still gives developers enough room to breath. Nitpicking every little thing is not practical for the software creation process.
 
 More details on this workflow are provided [here](./GITHUB_ACTIONS.md).
 
