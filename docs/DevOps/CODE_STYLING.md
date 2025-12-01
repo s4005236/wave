@@ -19,7 +19,9 @@ To ensure compliance with the PEP8 standard, the following tools are used in thi
 
 ### VSCode Extensions
 
-- **Pylint Extension**: An extension for VSCode, used for syntax highlighting and code styling. It is advised to use this extension to instantly get a feedback on the quality of your code. The current configuration for pylint can be viewed in the `.pylintrc` file at root.
+- **pylint Extension**: A pylint extension for VSCode, used for syntax highlighting and code styling. It is advised to use this extension to instantly get a feedback on the quality of your code. The current configuration for pylint can be viewed in the `.pylintrc` file at root.
+
+[pylint](https://pypi.org/project/pylint/) is a static code analyser for Python 2 or 3. It analyzes the written code without actually running it. Analysis includes checking for errors, finding problems in the code and providing suggestions on how the code could be refactored. As with all tools, pylint should only ever support the developer, not making important choices for them.
 
 ### _pre-commit_ hooks
 
@@ -35,7 +37,7 @@ When this happens, the commit fails and the changes made by black must be staged
 When this happens, the commit fails and the changes made by isort must be staged to retry the commit.
 
 ### GitHub Actions
-- **Pylint**: Runs and rates the code on a scale from 0 to 10. A score of 10 means the code fully follows the style rules. The pipeline used within this project fails if the score is below `8.0`.
+- **pylint**: Runs and rates the code on a scale from 0 to 10. A score of 10 means the code fully follows the style rules. The pipeline used within this project fails if the score is below `8.0`.
 If the code reaches this measure, the code is generally considered to be of decent quality. This way, bigger problems in the code, which slow down development in the long run, can be avoided successfully. On the other hand, this score still gives developers enough room to breath. Nitpicking every little thing is not practical for the software creation process.
 
 More details on this workflow are provided [here](./GITHUB_ACTIONS.md).

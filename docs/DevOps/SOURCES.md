@@ -16,7 +16,7 @@ Item                                |  Official Documentation Link
 **isort** documentation             |  https://pycqa.github.io/isort/
 **poetry** documentation            |  https://python-poetry.org/docs/
 **pre-commit** documentation        |  https://pre-commit.com/
-**Pylint** documentation            |  https://pylint.pycqa.org/
+**pylint** documentation            |  https://pylint.pycqa.org/
 **Semantic Versioning**             |  https://semver.org/
 
 ---

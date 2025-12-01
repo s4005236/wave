@@ -6,7 +6,7 @@ The actions are defined via `.yml` files within the `.github/workflows` director
 
 The current CI/CD setup for WAVE makes use out of the following implemented workflows:
 
-## Pylint workflow
+## pylint workflow
 
 > `pylint.yml`
 

@@ -21,7 +21,7 @@ Because of the branch protection rules described above, the only suitable way to
 
 After a developer is finished with the changes they worked on inside their branch they open a pull request. Then, there a few checks that must pass, before the changes are merged into the default branch.
 
-- **Code Quality Check**: Before the code is ready to be merged, a code quality check is conducted. The [Pylint GitHub Action workflow](GITHUB_ACTIONS.md#pylint-workflow) fulfills this task. If the achieved score for the application with the additional changes is sufficient, the check passes.
+- **Code Quality Check**: Before the code is ready to be merged, a code quality check is conducted. The [pylint GitHub Action workflow](GITHUB_ACTIONS.md#pylint-workflow) fulfills this task. If the achieved score for the application with the additional changes is sufficient, the check passes.
 
 - **Conflict Checks**: GitHub automatically 
 
