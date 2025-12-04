@@ -56,6 +56,13 @@ class Core:
                     ],
                 )
             )
+        for event in raw_config["events"]:
+            # TODO handle event loading
+            print(f"Loaded event: {event}")
+
+        for device in raw_config["devices"]:
+            # TODO handle device loading
+            print(f"Loaded device: {device}")
 
     def main(self) -> None:
         """

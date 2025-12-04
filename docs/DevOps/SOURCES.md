@@ -1,6 +1,6 @@
 # Sources
 
-The following list provides ressources for educational purposes, which can be used to dive deeper into the DevOps topics explained in the documentation.
+The following list provides resources for educational purposes, which can be used to dive deeper into the DevOps topics explained in the documentation.
 
 In alphabetical order:
 
@@ -16,7 +16,7 @@ Item                                |  Official Documentation Link
 **isort** documentation             |  https://pycqa.github.io/isort/
 **poetry** documentation            |  https://python-poetry.org/docs/
 **pre-commit** documentation        |  https://pre-commit.com/
-**Pylint** documentation            |  https://pylint.pycqa.org/
+**pylint** documentation            |  https://pylint.pycqa.org/
 **Semantic Versioning**             |  https://semver.org/
 
 ---

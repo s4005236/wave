@@ -4,7 +4,7 @@ Welcome to the DevOps Documentation for WAVE.
 
 ```
 Author: Alexander Jahn <s4005236@edu.dhsn.de>
-Last updated: 22.10.2025
+Last updated: 04.12.2025
 ```
 
 ## Introduction
@@ -19,6 +19,8 @@ The following DevOps topics are currently utilized in WAVE:
 
 - [Dependency Management](DEPENDENCY_MANAGEMENT.md)
 
+- [App Startup Routine](APP_STARTUP.md)
+
 - [Hard- & Software Requirements](REQUIREMENTS.md)
 
 - GitHub
@@ -30,10 +32,6 @@ The following DevOps topics are currently utilized in WAVE:
 ---
 
 - [Educational Ressources](SOURCES.md)
-
-## Graph Visualization
-
-TODO
 
 ---
 

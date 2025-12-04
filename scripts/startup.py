@@ -10,6 +10,9 @@ def start() -> None:
     Entry point for the application.
     Usually called through a poetry script command.
     """
+
+    # TODO apt install script for system dependencies
+
     print("Starting Core...")
 
     print("Starting Core API...")

@@ -26,7 +26,7 @@ The following requirements are needed in order to run WAVE on your system.
 
 The following VSCode Extensions are highly recommend:
 
-- [Pylint](https://marketplace.visualstudio.com/items?itemName=ms-python.pylint)
+- [pylint](https://marketplace.visualstudio.com/items?itemName=ms-python.pylint)
 
 ---
 
