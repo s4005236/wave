@@ -29,11 +29,6 @@ After a developer is finished with the changes they worked on inside their branc
 
 After a sufficient number of developers approved the changes, the pull request can be merged into the default branch. The branch, from which the changes were merged into main, is now no longer needed and is often deleted to keep the number of remote branches in the repository to a manageable amount.
 
-### Copilot Review
-
-_to be configured_
-
-
 ---
 
 > Back to [DevOps](./_DEV_OPS.md).
