@@ -33,10 +33,6 @@ The following DevOps topics are currently utilized in WAVE:
 
 - [Educational Ressources](SOURCES.md)
 
-## Graph Visualization
-
-TODO
-
 ---
 
 > Back to [README](../../README.md).

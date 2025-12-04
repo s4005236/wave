@@ -1,6 +1,6 @@
 # Sources
 
-The following list provides ressources for educational purposes, which can be used to dive deeper into the DevOps topics explained in the documentation.
+The following list provides resources for educational purposes, which can be used to dive deeper into the DevOps topics explained in the documentation.
 
 In alphabetical order:
 
