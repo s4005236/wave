@@ -6,7 +6,7 @@ Aside from some academic examples, every software project relies on external res
 
 When working in a team, it is most often needed, that every developer uses an agreed upon set of dependencies. This is to ensure, that bugs or problems within the code can be easily reproduced on every work station. Managing dependencies without any designated tools is very tidious and, talking about not-so-small projects, arguably impossible.
 
-Dependency management tools find a way to ease the handling of all external libraries needed in the development. They 
+Dependency management tools find a way to ease the handling of all external libraries needed in the development. To decide, which of the many tools is the best for each project, often depends on the size and type of the project at hand.
 
 ## Development Setup
 
@@ -20,9 +20,9 @@ This file is also the central place to provide information about the app. Like n
 
 **Why using poetry for dependency management?**
 
-Poetry is one of many dependency management tool. TODO
+> Poetry offers enough, but not much functionality and fits the project scope.
 
-
+Poetry is one of many dependency management tool. In comparison to a simple `requirements.txt` with `pip` it offers useful additional functionalities (e.g. defining [scripts](./APP_STARTUP.md#pyprojecttoml)), while also being easy to use. When writing code, the developer should not have to tinker with the tool and losing focus.
 
 ## Useful poetry commands
 
