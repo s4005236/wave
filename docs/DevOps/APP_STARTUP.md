@@ -2,30 +2,25 @@
 
 ## Overview
 
-The following diagram displays the interactions between all files involves in the app startup routine.
+The following diagram displays the interactions between all files involved in the app startup routine.
 
 ```
-Terminal
-|
+<begin startup>
+    |
 pyproject-toml
-|
+    |
 startup.py-------apt_installs.sh
-|
------------------------------------------------------------------
-|                   |               |               |           |
-main            core api        ip api          dm api          ui api
-|
-
-
+    |
+<end startup>
 ```
 
-## Tasks
+## Details
 
-The specific parts of the routine distributed over the files seen above shall now be explained in further detail.
+In the following, details for the files seen above are provided, focusing on their role in the app startup process.
 
-### Terminal / pyproject.toml
+### pyproject.toml
 
-To start the application, the `poetry run wave` command is called.
+To start the application, the startup command`poetry run wave` is called.
 The subcommand `run` is used to execute scripts with poetry which are defined in the `pyproject.toml` file. The script declared as `wave` points to the actual `startup.py` file, responsible for further action.
 
 ```
@@ -41,33 +36,15 @@ wave = "scripts.startup:start"
 
 This file defines the `start` method as the central entry point for the application. Here, the following tasks are handled:
 
-1. Calling the [`apt_installs.sh`](#apt_installssh) script.
-2. Starting the [Core REST API](#core-api-thread) in a separate thread.
-3. Starting the [Image Processor REST API](#image-processor-api-thread) in a separate thread.
-4. TODO doc the other threads
-5. The [Main Thread](#main-thread) entering the `main` method in the Core.
+1. Executing the [`apt_installs.sh`](#apt_installssh) script.
+2. Starting the APIs for all modules in different threads.
+3. Confirming, if startup was successful up until this point. The [Main Thread](#main-thread) entering the `main` method in the Core.
 
 ### apt_installs.sh
 
-TODO docs when implemented
+This script is used to install Raspberry Pi specific dependencies, which cannot be safely handled by poetry.
 
-### Threads
-
-#### Main Thread
-
-sends gestures, goes into while loop forever
-
-#### Core API Thread
-
-#### Image Processor API Thread
-
-#### Device Manager API Thread
-
-TODO docs
-
-#### UI API Thread
-
-TODO docs
+TODO docs when fully implemented
 
 ---
 
