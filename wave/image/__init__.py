@@ -19,15 +19,23 @@ time.sleep(1)
 
 # loads palm detection
 palm_interpreter = tflite.Interpreter(
-    model_path="wave/image/src/image_processing/tflite_models/palm_detection_without_custom_layer.tflite"
+    model_path="src/image_processing/tflite_models/palm_detection_without_custom_layer.tflite"
 )
 palm_interpreter.allocate_tensors()
 palm_input_details = palm_interpreter.get_input_details()
 palm_output_details = palm_interpreter.get_output_details()
 
+print("=== Palm Model Output Details ===")
+for i, d in enumerate(palm_output_details):
+    print(
+        f"Output {i}: index={d['index']} shape={d['shape']} dtype={d['dtype']}"
+    )
+print("================================")
+
+
 # loads hand landmark
 landmark_interpreter = tflite.Interpreter(
-    model_path="wave/image/src/image_processing/tflite_models/hand_landmark_lite.tflite"
+    model_path="src/image_processing/tflite_models/hand_landmark_lite.tflite"
 )
 landmark_interpreter.allocate_tensors()
 landmark_input_details = landmark_interpreter.get_input_details()
