@@ -43,16 +43,22 @@ landmark_output_details = landmark_interpreter.get_output_details()
 
 while True:
     start = time.time()
-    frame = picam.capture_array()
-    frame = cv2.cvtColor(frame, cv2.COLOR_BGRA2RGB)
+
+    # raw camera frame
+    frame_raw = picam.capture_array()
+
+    # frame for ML model (RGB)
+    frame = cv2.cvtColor(frame_raw, cv2.COLOR_BGRA2RGB)
+
+    # frame for OpenCV display (BGR)
+    frame_bgr = cv2.cvtColor(frame_raw, cv2.COLOR_BGRA2BGR)
 
     # --- Palm Detection ---
 
     # Debug: show expected input details
     expected_shape = palm_input_details[0]["shape"]  # e.g. [1, 256, 256, 3]
-    expected_dtype = palm_input_details[0][
-        "dtype"
-    ]  # e.g.. <class 'numpy.uint8'> or np.float32
+    expected_dtype = palm_input_details[0]["dtype"]  # e.g. np.float32
+
     # expected_shape is a numpy array; convert to python ints
     b, h_exp, w_exp, c_exp = map(int, expected_shape)
 
@@ -74,17 +80,16 @@ while True:
             f"error: unexpected amount of channels in the model: {c_exp}"
         )
 
-    # datatypes and normaliziation:
-    # some models expect uint8 (0..255), others float32 (0..1 or -1..1)
+    # datatypes and normalization:
+    # MediaPipe Palm Detection expects float32 in range [-1, +1]
     if expected_dtype == np.uint8:
         palm_input = np.expand_dims(palm_img.astype(np.uint8), axis=0)
     else:
-        # float models: mostly 0..1 -> divide by 255
         palm_input = np.expand_dims(
-            palm_img.astype(np.float32) / 255.0, axis=0
+            (palm_img.astype(np.float32) / 127.5) - 1.0, axis=0
         )
 
-    # output for debugging amd troubleshooting
+    # output for debugging and troubleshooting
     print("Model expects shape:", expected_shape, "dtype:", expected_dtype)
     print(
         "Prepared input shape:", palm_input.shape, "dtype:", palm_input.dtype
@@ -92,20 +97,41 @@ while True:
 
     # safety check before set_tensor
     if palm_input.shape != tuple(expected_shape.tolist()):
-        # ouput error if dtype- or shape mismatch
         raise ValueError(
             f"Input shape does not match model: prepared={palm_input.shape} expected={tuple(expected_shape.tolist())}"
         )
 
     # writes frame into model entry
     palm_interpreter.set_tensor(palm_input_details[0]["index"], palm_input)
+
     # start palm_detection to calculate output
     palm_interpreter.invoke()
-    # read output
-    palm_output = palm_interpreter.get_tensor(palm_output_details[0]["index"])
+
+    # read ALL palm outputs
+    palm_outputs = []
+    for d in palm_output_details:
+        palm_outputs.append(palm_interpreter.get_tensor(d["index"]))
+
+    # --- DEBUG: show palm score (confidence only, no box decoding yet) ---
+    # Output 1 has shape [1, 2944, 1] -> confidence per anchor
+    scores = palm_outputs[1]
+    max_score = float(scores.max())
+
+    cv2.putText(
+        frame_bgr,
+        f"Max palm score: {max_score:.3f}",
+        (10, 35),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        0.9,
+        (0, 0, 255),
+        2,
+    )
 
     # analyse palm_output -> bounding box of hand
     # e.g. palm_box = [x_min, y_min, x_max, y_max] (normalized to 0–1)
+    # NOTE:
+    # This model outputs 2944 anchors and requires anchor decoding.
+    # Bounding box extraction will be implemented in the next step.
 
     # --- Crop & Resize for hand_landmark model ---
     # crop hand area using palm_box
@@ -118,7 +144,10 @@ while True:
     # landmark_output = landmark_interpreter.get_tensor(landmark_output_details[0]['index'])
     # landmark_output -> 21 hand landmarks
 
-    cv2.imshow("wave - Wenn du das hier siehst, hast du ein Bild ^^", frame)
+    cv2.imshow(
+        "wave - Wenn du das hier siehst, hast du ein Bild ^^",
+        frame_bgr,
+    )
 
     if cv2.waitKey(1) & 0xFF == ord(
         "q"
