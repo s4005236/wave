@@ -1,4 +1,5 @@
 import math
+from enum import Enum
 
 import cv2
 import mediapipe as mp
@@ -9,52 +10,152 @@ mp_hands = mp.solutions.hands
 mp_draw = mp.solutions.drawing_utils
 
 
-# Simple gesture classifier using landmark geometry
-def classify_gesture(hand_landmarks, image_width, image_height):
-    # Convert landmarks to pixel coords for convenience
-    pts = []
-    for lm in hand_landmarks.landmark:
-        pts.append(np.array([lm.x * image_width, lm.y * image_height]))
+class Gesture(Enum):
+    THUMBS_UP = "THUMBS_UP"
+    OPEN_HAND = "OPEN_HAND"
+    PEACE_SIGN = "PEACE_SIGN"
+    FIST = "FIST"
+    POINT_UP = "POINT_UP"
+    POINT_DOWN = "POINT_DOWN"
+    UNKNOWN = "UNKNOWN"
 
-    # Indices in MediaPipe Hands:
-    # 0: wrist
-    # Thumb: 1,2,3,4
-    # Index: 5,6,7,8
-    # Middle: 9,10,11,12
-    # Ring: 13,14,15,16
-    # Pinky: 17,18,19,20
 
-    wrist = pts[0]
-    thumb_tip = pts[4]
-    index_tip = pts[8]
-    middle_tip = pts[12]
-    ring_tip = pts[16]
-    pinky_tip = pts[20]
+# Landmark indices for convenience
+THUMB_TIP = 4
+THUMB_IP = 3
+THUMB_MCP = 2
+INDEX_MCP = 5
+INDEX_PIP = 6
+INDEX_DIP = 7
+INDEX_TIP = 8
+MIDDLE_PIP = 10
+MIDDLE_TIP = 12
+RING_PIP = 14
+RING_TIP = 16
+PINKY_PIP = 18
+PINKY_TIP = 20
+WRIST = 0
 
-    # Distances from wrist to fingertips
-    def dist(a, b):
-        return np.linalg.norm(a - b)
 
-    d_thumb = dist(wrist, thumb_tip)
-    d_index = dist(wrist, index_tip)
-    d_middle = dist(wrist, middle_tip)
-    d_ring = dist(wrist, ring_tip)
-    d_pinky = dist(wrist, pinky_tip)
+def _is_finger_extended_y(tip, pip, direction="up"):
+    """
+    direction='up'  : tip above PIP  (smaller y)
+    direction='down': tip below PIP  (larger y)
+    """
+    if direction == "up":
+        return tip.y < pip.y
+    else:
+        return tip.y > pip.y
 
-    # Heuristic thresholds (tune as needed)
-    avg_finger = (d_index + d_middle + d_ring + d_pinky) / 4.0
 
-    # Fist: all fingers close to wrist
-    if avg_finger < 80:
-        return "FIST"
+def _is_thumb_up(hand_landmarks):
+    wrist = hand_landmarks.landmark[WRIST]
+    thumb_tip = hand_landmarks.landmark[THUMB_TIP]
+    thumb_ip = hand_landmarks.landmark[THUMB_IP]
+    thumb_mcp = hand_landmarks.landmark[THUMB_MCP]
 
-    # Open hand: all fingers far from wrist
-    if avg_finger > 140:
+    # Thumb extended if tip is far from MCP and roughly aligned vertically
+    extended = (
+        abs(thumb_tip.x - thumb_mcp.x) < 0.15
+        and thumb_tip.y < thumb_ip.y < thumb_mcp.y
+    )
+    # Above wrist for "thumbs up"
+    above_wrist = thumb_tip.y < wrist.y
+    return extended and above_wrist
+
+
+def _is_thumb_down(hand_landmarks):
+    wrist = hand_landmarks.landmark[WRIST]
+    thumb_tip = hand_landmarks.landmark[THUMB_TIP]
+    thumb_ip = hand_landmarks.landmark[THUMB_IP]
+    thumb_mcp = hand_landmarks.landmark[THUMB_MCP]
+
+    extended = (
+        abs(thumb_tip.x - thumb_mcp.x) < 0.15
+        and thumb_tip.y > thumb_ip.y > thumb_mcp.y
+    )
+    below_wrist = thumb_tip.y > wrist.y
+    return extended and below_wrist
+
+
+def _finger_states(hand_landmarks):
+    lms = hand_landmarks.landmark
+
+    index_extended = _is_finger_extended_y(
+        lms[INDEX_TIP], lms[INDEX_PIP], "up"
+    )
+    middle_extended = _is_finger_extended_y(
+        lms[MIDDLE_TIP], lms[MIDDLE_PIP], "up"
+    )
+    ring_extended = _is_finger_extended_y(lms[RING_TIP], lms[RING_PIP], "up")
+    pinky_extended = _is_finger_extended_y(
+        lms[PINKY_TIP], lms[PINKY_PIP], "up"
+    )
+
+    return {
+        "index": index_extended,
+        "middle": middle_extended,
+        "ring": ring_extended,
+        "pinky": pinky_extended,
+    }
+
+
+def classify_gesture(hand_landmarks) -> str:
+    lms = hand_landmarks.landmark
+    states = _finger_states(hand_landmarks)
+
+    index_up = states["index"]
+    middle_up = states["middle"]
+    ring_up = states["ring"]
+    pinky_up = states["pinky"]
+
+    thumb_up = _is_thumb_up(hand_landmarks)
+    thumb_down = _is_thumb_down(hand_landmarks)
+
+    if (
+        thumb_up
+        and not index_up
+        and not middle_up
+        and not ring_up
+        and not pinky_up
+    ):
+        return "THUMBS_UP"
+
+    if index_up and middle_up and not ring_up and not pinky_up:
+        return "PEACE_SIGN"
+
+    if thumb_up and index_up and middle_up and ring_up and pinky_up:
         return "OPEN_HAND"
 
-    # Thumbs up: thumb far, others closer, and thumb above wrist
-    if d_thumb > 120 and avg_finger < 130 and thumb_tip[1] < wrist[1]:
-        return "THUMBS_UP"
+    if (
+        not index_up
+        and not middle_up
+        and not ring_up
+        and not pinky_up
+        and not thumb_up
+        and not thumb_down
+    ):
+        return "FIST"
+
+    wrist = lms[WRIST]
+    index_tip = lms[INDEX_TIP]
+
+    if (
+        index_up
+        and not middle_up
+        and not ring_up
+        and not pinky_up
+        and index_tip.y < wrist.y
+    ):
+        return "POINT_UP"
+
+    if (
+        not middle_up
+        and not ring_up
+        and not pinky_up
+        and index_tip.y > wrist.y
+    ):
+        return "POINT_DOWN"
 
     return "UNKNOWN"
 
@@ -81,12 +182,9 @@ def main():
         frame = picam2.capture_array()
         frame = cv2.flip(frame, 1)
 
-        # Get image width and height
-        h, w, _ = frame.shape  # <--- ADD THIS LINE
+        """Get image width and heigh"""
+        h, w, _ = frame.shape
 
-        # If your frame is RGB already, skip conversion OR fix it as below:
-        # If frame is actually RGB from Picamera2, do NOT convert BGR->RGB.
-        # For safety on many setups, just do:
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
         results = hands.process(rgb_frame)
@@ -97,7 +195,7 @@ def main():
                     frame, hand_landmarks, mp_hands.HAND_CONNECTIONS
                 )
                 print(hand_landmarks.landmark[0])
-                gesture = classify_gesture(hand_landmarks, w, h)
+                gesture = classify_gesture(hand_landmarks)
 
                 wrist_lm = hand_landmarks.landmark[0]
                 cx, cy = int(wrist_lm.x * w), int(wrist_lm.y * h)
