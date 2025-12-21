@@ -24,6 +24,7 @@ numpy = "<2"
 tflite-runtime = {version = "^2.14.0", markers = "platform_machine == 'armv7l' or platform_machine == 'aarch64'"}
 picamera2 = {version = "^0.3.31", markers = "platform_machine == 'armv7l' or platform_machine == 'aarch64'"}
 fastapi-utils = "^0.8.0"
+mediapipe = "0.10.18"
 
 [tool.poetry.group.dev.dependencies]
 # development dependencies
