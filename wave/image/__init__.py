@@ -20,7 +20,9 @@ class Gesture(Enum):
     UNKNOWN = "UNKNOWN"
 
 
-# Landmark indices for convenience
+""" 
+Landmark indices for convenience 
+"""
 THUMB_TIP = 4
 THUMB_IP = 3
 THUMB_MCP = 2
@@ -54,12 +56,10 @@ def _is_thumb_up(hand_landmarks):
     thumb_ip = hand_landmarks.landmark[THUMB_IP]
     thumb_mcp = hand_landmarks.landmark[THUMB_MCP]
 
-    # Thumb extended if tip is far from MCP and roughly aligned vertically
     extended = (
         abs(thumb_tip.x - thumb_mcp.x) < 0.15
         and thumb_tip.y < thumb_ip.y < thumb_mcp.y
     )
-    # Above wrist for "thumbs up"
     above_wrist = thumb_tip.y < wrist.y
     return extended and above_wrist
 
@@ -210,7 +210,7 @@ def main():
                     cv2.LINE_AA,
                 )
 
-        cv2.imshow("MediaPipe Gestures", frame)
+        cv2.imshow("WAVE Gesture Recognition", frame)
 
         if cv2.waitKey(1) & 0xFF == ord("q"):
             break
