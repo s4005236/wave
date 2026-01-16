@@ -1,128 +1,223 @@
-import time
+import math
+from enum import Enum
 
 import cv2
+import mediapipe as mp
 import numpy as np
-import tflite_runtime.interpreter as tflite  # note: code runner may not work properly. Run with "python3 __init.py__" or vscode instead
 from picamera2 import Picamera2
 
-# configuration
-FPS = 20
-FRAME_TIME = 1.0 / FPS  # time between two frames
+mp_hands = mp.solutions.hands
+mp_draw = mp.solutions.drawing_utils
 
-picam = (
-    Picamera2()
-)  # is needed to use Raspberry Pi Cameras that are connected via CSI Interface
-picam.configure(
-    picam.create_preview_configuration(main={"size": (640, 480)})
-)  # heighth and width of the videostream
-picam.start()
-time.sleep(1)
 
-# loads palm detection
-palm_interpreter = tflite.Interpreter(
-    model_path="/home/wave/Projekte/wave/wave/image/models/palm_detection_without_custom_layer.tflite"
-)
-palm_interpreter.allocate_tensors()
-palm_input_details = palm_interpreter.get_input_details()
-palm_output_details = palm_interpreter.get_output_details()
+class Gesture(Enum):
+    THUMBS_UP = "THUMBS_UP"
+    OPEN_HAND = "OPEN_HAND"
+    PEACE_SIGN = "PEACE_SIGN"
+    FIST = "FIST"
+    POINT_UP = "POINT_UP"
+    POINT_DOWN = "POINT_DOWN"
+    UNKNOWN = "UNKNOWN"
 
-# loads hand landmark
-landmark_interpreter = tflite.Interpreter(
-    model_path="/home/wave/Projekte/wave/wave/image/models/hand_landmark_lite.tflite"
-)
-landmark_interpreter.allocate_tensors()
-landmark_input_details = landmark_interpreter.get_input_details()
-landmark_output_details = landmark_interpreter.get_output_details()
 
-while True:
-    start = time.time()
-    frame = picam.capture_array()
-    frame = cv2.cvtColor(frame, cv2.COLOR_BGRA2RGB)
+""" 
+Landmark indices for convenience 
+"""
+THUMB_TIP = 4
+THUMB_IP = 3
+THUMB_MCP = 2
+INDEX_MCP = 5
+INDEX_PIP = 6
+INDEX_DIP = 7
+INDEX_TIP = 8
+MIDDLE_PIP = 10
+MIDDLE_TIP = 12
+RING_PIP = 14
+RING_TIP = 16
+PINKY_PIP = 18
+PINKY_TIP = 20
+WRIST = 0
 
-    # --- Palm Detection ---
 
-    # Debug: show expected input details
-    expected_shape = palm_input_details[0]["shape"]  # e.g. [1, 256, 256, 3]
-    expected_dtype = palm_input_details[0][
-        "dtype"
-    ]  # e.g.. <class 'numpy.uint8'> or np.float32
-    # expected_shape is a numpy array; convert to python ints
-    b, h_exp, w_exp, c_exp = map(int, expected_shape)
-
-    # Resize: cv2.resize expects (width, height)
-    palm_img = cv2.resize(frame, (w_exp, h_exp))
-
-    # Channels: model may expect 1 or 3 channels
-    if c_exp == 1:
-        # convert to grayscale (single channel)
-        print("[WARN] Model expects 1 channel — converting to grayscale.")
-        palm_img = cv2.cvtColor(palm_img, cv2.COLOR_RGB2GRAY)
-        # make it H x W x 1
-        palm_img = np.expand_dims(palm_img, axis=-1)
-    elif c_exp == 3:
-        # already in 3 channel RGB format
-        pass
+def _is_finger_extended_y(tip, pip, direction="up"):
+    """
+    direction='up'  : tip above PIP  (smaller y)
+    direction='down': tip below PIP  (larger y)
+    """
+    if direction == "up":
+        return tip.y < pip.y
     else:
-        raise ValueError(
-            f"error: unexpected amount of channels in the model: {c_exp}"
-        )
+        return tip.y > pip.y
 
-    # datatypes and normaliziation:
-    # some models expect uint8 (0..255), others float32 (0..1 or -1..1)
-    if expected_dtype == np.uint8:
-        palm_input = np.expand_dims(palm_img.astype(np.uint8), axis=0)
-    else:
-        # float models: mostly 0..1 -> divide by 255
-        palm_input = np.expand_dims(
-            palm_img.astype(np.float32) / 255.0, axis=0
-        )
 
-    # output for debugging amd troubleshooting
-    print("Model expects shape:", expected_shape, "dtype:", expected_dtype)
-    print(
-        "Prepared input shape:", palm_input.shape, "dtype:", palm_input.dtype
+def _is_thumb_up(hand_landmarks):
+    wrist = hand_landmarks.landmark[WRIST]
+    thumb_tip = hand_landmarks.landmark[THUMB_TIP]
+    thumb_ip = hand_landmarks.landmark[THUMB_IP]
+    thumb_mcp = hand_landmarks.landmark[THUMB_MCP]
+
+    extended = (
+        abs(thumb_tip.x - thumb_mcp.x) < 0.15
+        and thumb_tip.y < thumb_ip.y < thumb_mcp.y
+    )
+    above_wrist = thumb_tip.y < wrist.y
+    return extended and above_wrist
+
+
+def _is_thumb_down(hand_landmarks):
+    wrist = hand_landmarks.landmark[WRIST]
+    thumb_tip = hand_landmarks.landmark[THUMB_TIP]
+    thumb_ip = hand_landmarks.landmark[THUMB_IP]
+    thumb_mcp = hand_landmarks.landmark[THUMB_MCP]
+
+    extended = (
+        abs(thumb_tip.x - thumb_mcp.x) < 0.15
+        and thumb_tip.y > thumb_ip.y > thumb_mcp.y
+    )
+    below_wrist = thumb_tip.y > wrist.y
+    return extended and below_wrist
+
+
+def _finger_states(hand_landmarks):
+    lms = hand_landmarks.landmark
+
+    index_extended = _is_finger_extended_y(
+        lms[INDEX_TIP], lms[INDEX_PIP], "up"
+    )
+    middle_extended = _is_finger_extended_y(
+        lms[MIDDLE_TIP], lms[MIDDLE_PIP], "up"
+    )
+    ring_extended = _is_finger_extended_y(lms[RING_TIP], lms[RING_PIP], "up")
+    pinky_extended = _is_finger_extended_y(
+        lms[PINKY_TIP], lms[PINKY_PIP], "up"
     )
 
-    # safety check before set_tensor
-    if palm_input.shape != tuple(expected_shape.tolist()):
-        # ouput error if dtype- or shape mismatch
-        raise ValueError(
-            f"Input shape does not match model: prepared={palm_input.shape} expected={tuple(expected_shape.tolist())}"
+    return {
+        "index": index_extended,
+        "middle": middle_extended,
+        "ring": ring_extended,
+        "pinky": pinky_extended,
+    }
+
+
+def classify_gesture(hand_landmarks) -> str:
+    lms = hand_landmarks.landmark
+    states = _finger_states(hand_landmarks)
+
+    index_up = states["index"]
+    middle_up = states["middle"]
+    ring_up = states["ring"]
+    pinky_up = states["pinky"]
+
+    thumb_up = _is_thumb_up(hand_landmarks)
+    thumb_down = _is_thumb_down(hand_landmarks)
+
+    if (
+        thumb_up
+        and not index_up
+        and not middle_up
+        and not ring_up
+        and not pinky_up
+    ):
+        return "THUMBS_UP"
+
+    if index_up and middle_up and not ring_up and not pinky_up:
+        return "PEACE_SIGN"
+
+    if thumb_up and index_up and middle_up and ring_up and pinky_up:
+        return "OPEN_HAND"
+
+    if (
+        not index_up
+        and not middle_up
+        and not ring_up
+        and not pinky_up
+        and not thumb_up
+        and not thumb_down
+    ):
+        return "FIST"
+
+    wrist = lms[WRIST]
+    index_tip = lms[INDEX_TIP]
+
+    if (
+        index_up
+        and not middle_up
+        and not ring_up
+        and not pinky_up
+        and index_tip.y < wrist.y
+    ):
+        return "POINT_UP"
+
+    if (
+        not middle_up
+        and not ring_up
+        and not pinky_up
+        and index_tip.y > wrist.y
+    ):
+        return "POINT_DOWN"
+
+    return "UNKNOWN"
+
+
+def main():
+    hands = mp_hands.Hands(
+        static_image_mode=False,
+        max_num_hands=2,
+        min_detection_confidence=0.5,
+        min_tracking_confidence=0.5,
+    )
+
+    picam2 = Picamera2()
+    picam2.configure(
+        picam2.create_video_configuration(
+            main={"format": "RGB888", "size": (640, 480)}
         )
+    )
+    picam2.start()
 
-    # writes frame into model entry
-    palm_interpreter.set_tensor(palm_input_details[0]["index"], palm_input)
-    # start palm_detection to calculate output
-    palm_interpreter.invoke()
-    # read output
-    palm_output = palm_interpreter.get_tensor(palm_output_details[0]["index"])
+    print("Camera started. Press 'q' to quit.")
 
-    # analyse palm_output -> bounding box of hand
-    # e.g. palm_box = [x_min, y_min, x_max, y_max] (normalized to 0–1)
+    while True:
+        frame = picam2.capture_array()
+        frame = cv2.flip(frame, 1)
 
-    # --- Crop & Resize for hand_landmark model ---
-    # crop hand area using palm_box
-    # hand_img = frame[y_min:y_max, x_min:x_max]
-    # hand_img = cv2.resize(hand_img, (224,224))
-    # landmark_input = np.expand_dims(hand_img.astype(np.float32)/255.0, axis=0)
+        """Get image width and heigh"""
+        h, w, _ = frame.shape
 
-    # landmark_interpreter.set_tensor(landmark_input_details[0]['index'], landmark_input)
-    # landmark_interpreter.invoke()
-    # landmark_output = landmark_interpreter.get_tensor(landmark_output_details[0]['index'])
-    # landmark_output -> 21 hand landmarks
+        rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-    cv2.imshow("wave - testing grayscale", frame)
+        results = hands.process(rgb_frame)
 
-    if cv2.waitKey(1) & 0xFF == ord(
-        "q"
-    ):  # returns ASCII-Code of the given Key; 0xFF ensures that only the last 8 bits of the actual key are being used
-        break
+        if results.multi_hand_landmarks:
+            for hand_landmarks in results.multi_hand_landmarks:
+                mp_draw.draw_landmarks(
+                    frame, hand_landmarks, mp_hands.HAND_CONNECTIONS
+                )
+                print(hand_landmarks.landmark[0])
+                gesture = classify_gesture(hand_landmarks)
 
-    elapsed = time.time() - start
-    delay = max(
-        0, FRAME_TIME - elapsed
-    )  # ensures positive numbers in case the loop needs more time than the fps cap
-    time.sleep(delay)  # "dynamic" delay based on the runtime of the loop
+                wrist_lm = hand_landmarks.landmark[0]
+                cx, cy = int(wrist_lm.x * w), int(wrist_lm.y * h)
+                cv2.putText(
+                    frame,
+                    gesture,
+                    (cx - 40, cy - 20),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.8,
+                    (0, 255, 0),
+                    2,
+                    cv2.LINE_AA,
+                )
 
-picam.close()
-cv2.destroyAllWindows()
+        cv2.imshow("WAVE Gesture Recognition", frame)
+
+        if cv2.waitKey(1) & 0xFF == ord("q"):
+            break
+
+    picam2.stop()
+    cv2.destroyAllWindows()
+
+
+if __name__ == "__main__":
+    main()

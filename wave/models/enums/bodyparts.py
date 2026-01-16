@@ -2,6 +2,10 @@ from enum import StrEnum, auto
 
 
 class Fingers(StrEnum):
+    """
+    Enum defining all bodyparts which can be used to identify a gesture.
+    """
+
     LTHUMB = auto()
     LINDEX = auto()
     LMIDDLE = auto()

@@ -6,13 +6,16 @@ Below is a list of all defined bodyparts which can be detected by the image proc
 
 | Short   | Description         |
 | ------- | ------------------- |
-| LTHUMB  | Left thumb          |
-| LINDEX  | Left index finger   |
-| LMIDDLE | Left middle finger  |
-| LRING   | Left ring finger    |
-| LLITTLE | Left little finger  |
-| RTHUMB  | Right thumb         |
-| RINDEX  | Right index finger  |
-| RMIDDLE | Right middle finger |
-| RRING   | Right ring finger   |
-| RLITTLE | Right little finger |
+| THUMB_TIP | Thumb tip         |
+| THUMB_IP | Thumb proximal interphalangeal joint |
+| THUMB_MCP | Thumb metacarpophalangeal joint |
+| INDEX_MCP | Index finger metacarpophalangeal joint |
+| INDEX_PIP | Index finger proximal interphalangeal joint |
+| INDEX_TIP | Index finger tip |
+| MIDDLE_PIP | middle finger proximal interphalangeal joint |
+| MIDDLE_TIP | middle finger tip |
+| RING_PIP | proximal interphalangeal joint |
+| RING_TIP | Ring finger tip |
+| PINKY_PIP | proximal interphalangeal joint |
+| PINKY_TIP | Pinky tip |
+| WRIST | Wrist (acts as a kind of base point)  |

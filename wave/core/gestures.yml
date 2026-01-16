@@ -1,0 +1,20 @@
+gestures:
+  THUMBS_UP:
+    landmarks: [0, 2, 3, 4]  # wrist, thumb_mcp, thumb_ip, thumb_tip
+    rules:
+      - abs(thumb_tip.x - thumb_mcp.x) < 0.15
+      - thumb_tip.y < thumb_ip.y
+      - thumb_ip.y < thumb_mcp.y
+      - thumb_tip.y < wrist.y
+      - not index_up
+      - not middle_up
+      - not ring_up
+      - not pinky_up
+  PEACE_SIGN:
+    landmarks: [5, 6, 10, 12]
+    rules:
+      - index_up
+      - middle_up
+      - not ring_up
+      - not pinky_up
+  # Weitere Gesten...
