@@ -1,0 +1,13 @@
+{
+	"name": "Python 3",
+	"image": "mcr.microsoft.com/devcontainers/python:2-3.11-trixie",
+	"features": {
+		"ghcr.io/devcontainers-extra/features/poetry:2": {},
+		"ghcr.io/gvatsal60/dev-container-features/pre-commit:1": {}
+	},
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+	"postCreateCommand": "poetry update && pre-commit install && poetry install"
+	// Configure tool-specific properties.
+	// "customizations": {},
+}
