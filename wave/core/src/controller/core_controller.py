@@ -67,8 +67,6 @@ class CoreController:
             f"for gesture {detected_gesture.name}"
         )
 
-        # TODO send to DM
-
         return {
             "status": 200,
             "message": "Successfully connected. "

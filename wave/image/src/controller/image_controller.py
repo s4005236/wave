@@ -84,5 +84,4 @@ class ImageController:
         """
         Disconnect endpoint. Stops the image processing.
         """
-        # TODO disconnect logic
         return {"status": 500, "message": "not yet implemented"}

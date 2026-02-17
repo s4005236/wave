@@ -37,7 +37,6 @@ class ImageProcessor:
                 print(f"    Events: {gesture.events}")
                 print("----------------")
 
-            # TODO put code for image processing here
 
             # configuration
             FPS = 20
@@ -139,6 +138,5 @@ class ImageProcessor:
             picam.close()
             cv2.destroyAllWindows()
 
-            # TODO call Core module api with detected gesture
 
             sleep(60)
