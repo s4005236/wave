@@ -1,3 +1,7 @@
+THIS IS A LEGACY DOCUMENT FOR REFERENCE PURPOSES ONLY.  
+This document describes the first try of a toolset. It ultimately failed because of poor documentation of TFLite.  
+Please refer to the [current Image Processor documentation](IMAGE_PROCESSOR.md) for up-to-date information.
+
 # Recommended Version Combination for OpenCV + TensorFlow Lite on Raspberry Pi OS (Bookworm)
 
 ### Why are these Versions Recommended?
