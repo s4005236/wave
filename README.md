@@ -35,10 +35,6 @@ The documentation is written as if the features would work. Please open an issue
     - PR reviews and pipelines
     - Commit checks
 
-## User Guide
-
-For more information on how to use WAVE, please refer to our [User Guide](/docs/User/_USER_GUIDE.md).
-
 # Development and Contributing
 
 ## Development Setup & Start

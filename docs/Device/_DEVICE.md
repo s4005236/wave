@@ -1,3 +1,3 @@
 # Device Manager
 
-TODO add documentation overview for device manager
+This feature was planned, but never finished. Please check the [README](../../README.md) for more information.

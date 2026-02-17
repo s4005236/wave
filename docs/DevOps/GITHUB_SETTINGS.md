@@ -39,10 +39,7 @@ After a sufficient number of developers approved the changes, the pull request c
 
 ## Merge Requests
 
-Because of the branch protection rules described above, the only suitable way to push code into the default branch is through pull/merge requests. These are intertwined with a code review process.
-
-TODO
-
+Because of the branch protection rules described above, the only suitable way to push code into the default branch is through pull/merge requests. These are intertwined with a code review process.  
 After a developer is finished with the changes they worked on inside their branch they open a pull request. Then, there a few checks that must pass, before the changes are merged into the default branch.
 
 - **Code Quality Check**: Before the code is ready to be merged, a code quality check is conducted. The [Pylint GitHub Action workflow](GITHUB_ACTIONS.md#pylint-workflow) fulfills this task. If the achieved score for the application with the additional changes is sufficient, the check passes.
