@@ -44,8 +44,6 @@ This file defines the `start` method as the central entry point for the applicat
 
 This script is used to install Raspberry Pi-specific dependencies, which cannot be safely handled by poetry.
 
-TODO add documentation when fully implemented
-
 ---
 
 > Back to [README](../../README.md).

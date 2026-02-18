@@ -15,7 +15,6 @@ class Gesture:
     power: int
     events: list[str]
     components: list[Fingers]
-    # TODO uuid: UUID = field(default_factory=uuid4)
 
     def is_still(self):
         """

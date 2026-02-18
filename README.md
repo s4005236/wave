@@ -11,12 +11,29 @@
 WAVE enables you to control your home without touching any buttons or screens. Use a personalized system of gestures to manage all your smart devices at the wink of your hand.
 
 ## Features
+The features are split into two categories: Originally planned and finished.  
+Due to mistakes in the planning of deadlines, features are highly incomplete. The core functionality of detecting gestures is available, therefore reaching the requirement of the task.  
+The documentation is written as if the features would work. Please open an issue or contact the authors if you've got any questions.
 
-_TODO: feature list_
+### Was planned
 
-## User Guide
+- Core module to configure the gestures and other settings
+- Device Manager to control arbitrary smart home devices
+- A web UI for settings and a log of detected gestures
+- Possibly accounts with different, auto-detected persons
 
-For more information on how to use WAVE, please refer to our [User Guide](/docs/User/_USER_GUIDE.md).
+### Finished
+
+- Image processor
+    - Detecting hand gestures
+    - Running on RPI or better hardware
+    - Fast and reliable detection
+- Data models, definitions and communication protocols
+- DevOps features
+    - Automatic Docker image builds
+    - Code quality checks
+    - PR reviews and pipelines
+    - Commit checks
 
 # Development and Contributing
 
@@ -36,11 +53,6 @@ __Step 3:__ Start the application by running:
 ```
 poetry run wave
 ```
-
-
-- gesture recognition
-- control smart home devices
-- on raspis, so easy to place in rooms etc., not bound to a location, wireless etc.
 
 Wave is a lightweight gesture-recognition platform for controlling smart home devices. It is designed to run on Raspberry Pi units so devices can be placed easily in rooms, operate wirelessly, and are not tied to a single location. Gesture inputs are translated into control commands for lights, outlets, media, and other home automation endpoints.
 
